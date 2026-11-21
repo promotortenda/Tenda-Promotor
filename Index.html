@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tenda Promotor</title>
+<script src="https://unpkg.com" type="text/javascript"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
@@ -13,10 +14,22 @@
   .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
   .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
   main { max-width: 500px; margin: 0 auto; padding: 14px; }
+  
+  /* Área da Câmera */
+  #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+  #reader { width: 100%; }
+  .btn-close-cam { width: 100%; background: #374151; color: #fff; border: none; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+
+  /* Busca + Botão Bip */
   .search-box { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-  input { width: 100%; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background: #f9fafb; outline: none; }
+  .search-row { display: flex; gap: 8px; }
+  input { flex: 1; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background: #f9fafb; outline: none; min-width: 0; }
   input:focus { border-color: #b91c1c; background: #fff; }
+  .btn-bip { background: #1d4ed8; color: #fff; border: none; padding: 0 14px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; shrink: 0; }
+  .btn-bip:active { background: #1e40af; }
+
   .card { background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 12px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .ean-tag { display: inline-block; font-size: 10px; font-family: monospace; background: #f3f4f6; color: #6b7280; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; }
   .prod-title { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 8px; line-height: 1.35; }
   .regra { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
   .econ-tag { color: #15803d; font-weight: 800; }
@@ -29,6 +42,7 @@
   .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
   .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
   .btn-add:active { background: #991b1b; }
+  
   footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
   .foot-inner { max-width: 500px; margin: 0 auto; }
   .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
@@ -39,6 +53,7 @@
   .t-cartao { font-size: 15px; font-weight: 800; color: #1d4ed8; }
   .t-econ-box { background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 2px; }
   .t-econ { font-size: 15px; font-weight: 800; color: #15803d; }
+  .empty-msg { text-align: center; padding: 24px 12px; color: #6b7280; font-size: 14px; background: #fff; border-radius: 12px; border: 1px dashed #d1d5db; }
 </style>
 </head>
 <body>
@@ -47,16 +62,27 @@
   <div class="top-row">
     <div>
       <h1>TENDA PROMOTOR</h1>
-      <div id="statusBase" class="status">● Online (Base Pronta)</div>
+      <div id="statusBase" class="status">● Online (Câmera + Base Ativa)</div>
     </div>
-    <button class="btn-sync" onclick="sincronizarPlanilha()">↻ Sincronizar</button>
+    <button class="btn-sync" onclick="limpar()">↻ Limpar Busca</button>
   </div>
 </header>
 
 <main>
-  <div class="search-box">
-    <input type="text" id="searchInput" oninput="filtrar()" placeholder="Buscar produto (ex: Bauducco, Feijão, Café)...">
+  <!-- Caixa da Câmera -->
+  <div id="camBox">
+    <div id="reader"></div>
+    <button class="btn-close-cam" onclick="fecharCamera()">✕ Fechar Câmera</button>
   </div>
+
+  <!-- Busca + Botão Bip -->
+  <div class="search-box">
+    <div class="search-row">
+      <input type="text" id="searchInput" oninput="filtrar()" placeholder="Nome ou código EAN...">
+      <button class="btn-bip" onclick="abrirCamera()">📷 Bip</button>
+    </div>
+  </div>
+
   <div id="lista"></div>
 </main>
 
@@ -85,30 +111,31 @@
 
 <script>
   var produtos = [
-    {id:1, nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
-    {id:2, nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:3, nome:"Cápsula de Café Espresso Vibrante 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:4, nome:"Cápsula de Cappuccino Doce De Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:5, nome:"Biscoito Wafer Recheio Chocolate Maxi Bauducco 104g", comum:5.15, cartao:4.65, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:6, nome:"Cappuccino Solúvel Classic 3 Corações 20g", comum:2.19, cartao:1.65, regra:"Promoção: Pague 3 Leve 4"},
-    {id:7, nome:"Chá Xô TPM Leão 20g 10 Unidades", comum:12.49, cartao:11.49, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:8, nome:"Chocolate Lacta ao Leite com Recheio de Oreo 90g", comum:6.79, cartao:6.79, regra:""},
-    {id:9, nome:"Caldo de Galinha em Pó Knorr Professional 1,01kg", comum:21.90, cartao:21.90, regra:""},
-    {id:10, nome:"Café Solúvel Nescafé Extra Forte Sachet 40g", comum:7.49, cartao:7.49, regra:""},
-    {id:11, nome:"Achocolatado NESCAU Cilindro 200g", comum:6.89, cartao:6.39, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:12, nome:"Farinha de Arroz Urbano 1kg", comum:7.89, cartao:7.19, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:13, nome:"Farinha de Mandioca Fina Kicaldo 1kg", comum:6.99, cartao:6.89, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:14, nome:"Biscoito Recheado Trakinas Chocolate 126g", comum:3.19, cartao:2.89, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:15, nome:"Achocolatado em Pó NESCAU 730g", comum:16.89, cartao:16.89, regra:""},
-    {id:16, nome:"Amendoim Japonês Elma Chips 400g", comum:20.50, cartao:18.50, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:17, nome:"Bebida Láctea Pirakids Chocolate 200ml", comum:1.35, cartao:1.25, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:18, nome:"Castanhas de Caju Amigos do Bem 50g", comum:6.99, cartao:6.99, regra:""},
-    {id:19, nome:"Doce de Mocotó Biro Biro 140g", comum:6.49, cartao:5.99, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:20, nome:"Feijão Carioca Empório São João 1kg", comum:8.89, cartao:8.59, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:21, nome:"Bananinha Zero Açúcar Oliveira 22g 24 Unid", comum:52.56, cartao:52.56, regra:""},
-    {id:22, nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
+    {id:1, ean:"7896005800027", nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
+    {id:2, ean:"7896005806203", nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:3, ean:"7896005806142", nome:"Cápsula de Café Espresso Vibrante 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:4, ean:"7896005806227", nome:"Cápsula de Cappuccino Doce De Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:5, ean:"7891962058139", nome:"Biscoito Wafer Recheio Chocolate Maxi Bauducco 104g", comum:5.15, cartao:4.65, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:6, ean:"7896005801727", nome:"Cappuccino Solúvel Classic 3 Corações 20g", comum:2.19, cartao:1.65, regra:"Promoção: Pague 3 Leve 4"},
+    {id:7, ean:"7891098042156", nome:"Chá Xô TPM Leão 20g 10 Unidades", comum:12.49, cartao:11.49, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:8, ean:"7622210617194", nome:"Chocolate Lacta ao Leite com Recheio de Oreo 90g", comum:6.79, cartao:6.79, regra:""},
+    {id:9, ean:"7891150036840", nome:"Caldo de Galinha em Pó Knorr Professional 1,01kg", comum:21.90, cartao:21.90, regra:""},
+    {id:10, ean:"7891000053508", nome:"Café Solúvel Nescafé Extra Forte Sachet 40g", comum:7.49, cartao:7.49, regra:""},
+    {id:11, ean:"7891000248768", nome:"Achocolatado NESCAU Cilindro 200g", comum:6.89, cartao:6.39, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:12, ean:"7896006744115", nome:"Farinha de Arroz Urbano 1kg", comum:7.89, cartao:7.19, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:13, ean:"7896079471116", nome:"Farinha de Mandioca Fina Kicaldo 1kg", comum:6.99, cartao:6.89, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:14, ean:"7622300861964", nome:"Biscoito Recheado Trakinas Chocolate 126g", comum:3.19, cartao:2.89, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:15, ean:"7891000315507", nome:"Achocolatado em Pó NESCAU 730g", comum:16.89, cartao:16.89, regra:""},
+    {id:16, ean:"7892840812836", nome:"Amendoim Japonês Elma Chips 400g", comum:20.50, cartao:18.50, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:17, ean:"7896052606542", nome:"Bebida Láctea Pirakids Chocolate 200ml", comum:1.35, cartao:1.25, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:18, ean:"7898948854120", nome:"Castanhas de Caju Amigos do Bem 50g", comum:6.99, cartao:6.99, regra:""},
+    {id:19, ean:"7896324100129", nome:"Doce de Mocotó Biro Biro 140g", comum:6.49, cartao:5.99, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:20, ean:"7898113810128", nome:"Feijão Carioca Empório São João 1kg", comum:8.89, cartao:8.59, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:21, ean:"7898215152019", nome:"Bananinha Zero Açúcar Oliveira 22g 24 Unid", comum:52.56, cartao:52.56, regra:""},
+    {id:22, ean:"7898952411029", nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
   ];
   var carrinho = [];
+  var scanner = null;
 
   function fmt(v) {
     return "R$ " + v.toFixed(2).replace(".", ",");
@@ -117,60 +144,6 @@
   function desenhar(lista) {
     var box = document.getElementById("lista");
     box.innerHTML = "";
-    for (var i = 0; i < lista.length; i++) {
-      var p = lista[i];
-      var econ = p.comum - p.cartao;
-      var card = document.createElement("div");
-      card.className = "card";
-      var hRegra = "";
-      if (p.regra) {
-        hRegra = '<div class="regra"><span>⚡ ' + p.regra + '</span>' + (econ > 0 ? '<span class="econ-tag">-' + fmt(econ) + '</span>' : '') + '</div>';
-      }
-      card.innerHTML =
-        '<div class="prod-title">' + p.nome + '</div>' +
-        hRegra +
-        '<div class="prices">' +
-          '<div class="p-box"><span class="p-label">Preço Comum</span><span class="p-val">' + fmt(p.comum) + '</span></div>' +
-          '<div class="p-box cartao"><span class="p-label">Cartão Tenda</span><span class="p-val">' + fmt(p.cartao) + '</span></div>' +
-        '</div>' +
-        '<button class="btn-add" onclick="adicionar(' + p.id + ')">+ Adicionar ao Carrinho</button>';
-      box.appendChild(card);
-    }
-  }
-
-  function filtrar() {
-    var q = document.getElementById("searchInput").value.toLowerCase();
-    desenhar(produtos.filter(function(p) { return p.nome.toLowerCase().indexOf(q) !== -1; }));
-  }
-
-  function adicionar(id) {
-    for (var i = 0; i < produtos.length; i++) {
-      if (produtos[i].id === id) { carrinho.push(produtos[i]); break; }
-    }
-    placar();
-  }
-
-  function limpar() {
-    carrinho = [];
-    document.getElementById("searchInput").value = "";
-    desenhar(produtos);
-    placar();
-  }
-
-  function placar() {
-    var c1 = 0, c2 = 0;
-    for (var i = 0; i < carrinho.length; i++) { c1 += carrinho[i].comum; c2 += carrinho[i].cartao; }
-    document.getElementById("qtdItens").innerText = carrinho.length;
-    document.getElementById("totalComum").innerText = fmt(c1);
-    document.getElementById("totalCartao").innerText = fmt(c2);
-    document.getElementById("totalEconomia").innerText = fmt(c1 - c2);
-  }
-
-  function sincronizarPlanilha() {
-    document.getElementById("statusBase").innerText = "● Planilha Sincronizada (" + produtos.length + " itens)";
-  }
-
-  desenhar(produtos);
-</script>
-</body>
-</html>
+    
+    if (lista.length === 0) {
+      var termo = document.getElementById("searchInput").value;
