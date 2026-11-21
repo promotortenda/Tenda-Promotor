@@ -1,198 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenda Promotor • Preços & Economia</title>
-    <script src="https://tailwindcss.com"></script>
-    <script src="https://unpkg.com" type="text/javascript"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tenda Promotor</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
+  header { background: #b91c1c; color: #fff; padding: 14px 16px; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .top-row { max-width: 500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  h1 { font-size: 19px; font-weight: 800; letter-spacing: -0.5px; }
+  .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
+  .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  main { max-width: 500px; margin: 0 auto; padding: 14px; }
+  .search-box { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  input { width: 100%; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background: #f9fafb; outline: none; }
+  input:focus { border-color: #b91c1c; background: #fff; }
+  .card { background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 12px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .prod-title { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 8px; line-height: 1.35; }
+  .regra { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+  .econ-tag { color: #15803d; font-weight: 800; }
+  .prices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: center; margin-bottom: 10px; }
+  .p-box { padding: 8px; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb; }
+  .p-box.cartao { background: #eff6ff; border: 2px solid #2563eb; }
+  .p-label { display: block; font-size: 10px; text-transform: uppercase; color: #6b7280; font-weight: 700; }
+  .p-box.cartao .p-label { color: #1e40af; }
+  .p-val { font-size: 15px; font-weight: 700; color: #374151; }
+  .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
+  .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+  .btn-add:active { background: #991b1b; }
+  footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
+  .foot-inner { max-width: 500px; margin: 0 auto; }
+  .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
+  .btn-clear { background: none; border: none; color: #dc2626; text-decoration: underline; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .totals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; text-align: center; background: #f9fafb; padding: 8px; border-radius: 8px; border: 1px solid #e5e7eb; }
+  .t-lbl { font-size: 10px; text-transform: uppercase; color: #6b7280; font-weight: 700; }
+  .t-comum { font-size: 13px; font-weight: 700; text-decoration: line-through; color: #6b7280; }
+  .t-cartao { font-size: 15px; font-weight: 800; color: #1d4ed8; }
+  .t-econ-box { background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 2px; }
+  .t-econ { font-size: 15px; font-weight: 800; color: #15803d; }
+</style>
 </head>
-<body class="bg-gray-100 pb-40">
+<body>
 
-    <!-- Cabeçalho -->
-    <header class="bg-red-700 text-white p-4 shadow-md sticky top-0 z-20">
-        <div class="max-w-md mx-auto flex justify-between items-center">
-            <div>
-                <h1 class="text-xl font-extrabold tracking-tight">TENDA <span class="font-light">PROMOTOR</span></h1>
-                <p id="statusBase" class="text-xs text-red-100">Sincronizando tabela...</p>
-            </div>
-            <button onclick="carregarDados()" class="bg-red-800 hover:bg-red-900 text-xs font-bold px-3 py-1.5 rounded-lg border border-red-500">
-                ↻ Atualizar
-            </button>
-        </div>
-    </header>
-
-    <main class="max-w-md mx-auto p-4 space-y-4">
-
-        <!-- Área da Câmera -->
-        <div id="cameraContainer" class="hidden bg-black rounded-xl overflow-hidden shadow-lg">
-            <div id="reader" class="w-full"></div>
-            <button onclick="fecharCamera()" class="w-full bg-gray-800 text-white py-2.5 text-xs font-bold uppercase">
-                ✕ Fechar Câmera
-            </button>
-        </div>
-
-        <!-- Barra de Busca e Botão Câmera -->
-        <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
-            <div class="flex gap-2">
-                <input type="text" id="searchInput" oninput="filtrarProdutos()" placeholder="Buscar produto (ex: Bauducco, Feijão)..." 
-                    class="w-full px-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
-                <button onclick="abrirCamera()" 
-                    class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1 shrink-0 shadow">
-                    📷 Bip
-                </button>
-            </div>
-        </div>
-
-        <!-- Lista de Produtos -->
-        <div id="listaProdutos" class="space-y-3"></div>
-
-    </main>
-
-    <!-- Placar Fixo do Carrinho -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-red-600 shadow-2xl p-3 z-30">
-        <div class="max-w-md mx-auto">
-            <div class="flex justify-between items-center mb-1.5">
-                <span class="text-xs font-bold text-gray-600 uppercase">Carrinho (<span id="qtdItens">0</span> itens)</span>
-                <button onclick="limparCarrinho()" class="text-xs text-red-600 underline font-medium">Limpar</button>
-            </div>
-            
-            <div class="grid grid-cols-3 gap-2 text-center bg-gray-50 p-2 rounded-lg border border-gray-200">
-                <div>
-                    <p class="text-[10px] text-gray-500 uppercase">Preço Comum</p>
-                    <p id="totalComum" class="text-sm font-bold text-gray-700 line-through">R$ 0,00</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-blue-700 font-bold uppercase">Cartão Tenda</p>
-                    <p id="totalCartao" class="text-base font-extrabold text-blue-700">R$ 0,00</p>
-                </div>
-                <div class="bg-green-100 rounded p-0.5 border border-green-300">
-                    <p class="text-[10px] text-green-800 font-bold uppercase">Economia</p>
-                    <p id="totalEconomia" class="text-base font-extrabold text-green-700">R$ 0,00</p>
-                </div>
-            </div>
-        </div>
+<header>
+  <div class="top-row">
+    <div>
+      <h1>TENDA PROMOTOR</h1>
+      <div id="statusBase" class="status">● Online (Base Pronta)</div>
     </div>
+    <button class="btn-sync" onclick="sincronizarPlanilha()">↻ Sincronizar</button>
+  </div>
+</header>
 
-    <script>
-        var LINK_PLANILHA = "https://google.com";
-        var produtos = [];
-        var carrinho = [];
-        var html5QrCode;
+<main>
+  <div class="search-box">
+    <input type="text" id="searchInput" oninput="filtrar()" placeholder="Buscar produto (ex: Bauducco, Feijão, Café)...">
+  </div>
+  <div id="lista"></div>
+</main>
 
-        function limparNumero(v) {
-            if (!v) return 0;
-            var limpo = v.replace(/[^0-9,]/g, "").replace(",", ".");
-            return parseFloat(limpo) || 0;
-        }
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <span>CARRINHO (<span id="qtdItens">0</span> ITENS)</span>
+      <button class="btn-clear" onclick="limpar()">Limpar carrinho</button>
+    </div>
+    <div class="totals">
+      <div>
+        <div class="t-lbl">Comum</div>
+        <div id="totalComum" class="t-comum">R$ 0,00</div>
+      </div>
+      <div>
+        <div class="t-lbl" style="color:#1e40af">Cartão Tenda</div>
+        <div id="totalCartao" class="t-cartao">R$ 0,00</div>
+      </div>
+      <div class="t-econ-box">
+        <div class="t-lbl" style="color:#166534">Economia</div>
+        <div id="totalEconomia" class="t-econ">R$ 0,00</div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        function formatarMoeda(v) {
-            return "R$ " + v.toFixed(2).replace(".", ",");
-        }
+<script>
+  var LINK_CSV = "https://google.com";
+  var produtos = [
+    {id:1, nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
+    {id:2, nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:3, nome:"Cápsula de Café Espresso Vibrante 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:4, nome:"Cápsula de Cappuccino Doce De Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
+    {id:5, nome:"Biscoito Wafer Recheio Chocolate Maxi Bauducco 104g", comum:5.15, cartao:4.65, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:6, nome:"Cappuccino Solúvel Classic 3 Corações 20g", comum:2.19, cartao:1.65, regra:"Promoção: Pague 3 Leve 4"},
+    {id:7, nome:"Chá Xô TPM Leão 20g 10 Unidades", comum:12.49, cartao:11.49, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:8, nome:"Chocolate Lacta ao Leite com Recheio de Oreo 90g", comum:6.79, cartao:6.79, regra:""},
+    {id:9, nome:"Caldo de Galinha em Pó Knorr Professional 1,01kg", comum:21.90, cartao:21.90, regra:""},
+    {id:10, nome:"Café Solúvel Nescafé Extra Forte Sachet 40g", comum:7.49, cartao:7.49, regra:""},
+    {id:11, nome:"Achocolatado NESCAU Cilindro 200g", comum:6.89, cartao:6.39, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:12, nome:"Farinha de Arroz Urbano 1kg", comum:7.89, cartao:7.19, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:13, nome:"Farinha de Mandioca Fina Kicaldo 1kg", comum:6.99, cartao:6.89, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:14, nome:"Biscoito Recheado Trakinas Chocolate 126g", comum:3.19, cartao:2.89, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:15, nome:"Achocolatado em Pó NESCAU 730g", comum:16.89, cartao:16.89, regra:""},
+    {id:16, nome:"Amendoim Japonês Elma Chips 400g", comum:20.50, cartao:18.50, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:17, nome:"Bebida Láctea Pirakids Chocolate 200ml", comum:1.35, cartao:1.25, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:18, nome:"Castanhas de Caju Amigos do Bem 50g", comum:6.99, cartao:6.99, regra:""},
+    {id:19, nome:"Doce de Mocotó Biro Biro 140g", comum:6.49, cartao:5.99, regra:"Cartão Tenda: a partir de 3 unidades"},
+    {id:20, nome:"Feijão Carioca Empório São João 1kg", comum:8.89, cartao:8.59, regra:"Cartão Tenda: a partir de 4 unidades"},
+    {id:21, nome:"Bananinha Zero Açúcar Oliveira 22g 24 Unid", comum:52.56, cartao:52.56, regra:""},
+    {id:22, nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
+  ];
+  var carrinho = [];
 
-        function carregarDados() {
-            var st = document.getElementById("statusBase");
-            st.innerText = "Sincronizando planilha...";
-            
-            fetch(LINK_PLANILHA + "&t=" + Date.now())
-                .then(function(r) { return r.text(); })
-                .then(function(csv) {
-                    var linhas = csv.split(/\r?\n/);
-                    produtos = [];
-                    
-                    for (var i = 1; i < linhas.length; i++) {
-                        var cols = linhas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                        if (cols.length < 4) continue;
-                        
-                        var img = (cols || "").replace(/^"|"$/g, "").trim();
-                        var nome = (cols || "").replace(/^"|"$/g, "").trim();
-                        var comum = limparNumero(cols);
-                        if (!nome || comum === 0) continue;
+  function fmt(v) {
+    return "R$ " + v.toFixed(2).replace(".", ",");
+  }
 
-                        var msg1 = (cols || "").replace(/^"|"$/g, "").trim();
-                        var msg2 = (cols || "").replace(/^"|"$/g, "").trim();
-                        var msg3 = (cols || "").replace(/^"|"$/g, "").trim();
+  function desenhar(lista) {
+    var box = document.getElementById("lista");
+    box.innerHTML = "";
+    for (var i = 0; i < lista.length; i++) {
+      var p = lista[i];
+      var econ = p.comum - p.cartao;
+      var card = document.createElement("div");
+      card.className = "card";
+      var hRegra = "";
+      if (p.regra) {
+        hRegra = '<div class="regra"><span>⚡ ' + p.regra + '</span>' + (econ > 0 ? '<span class="econ-tag">-' + fmt(econ) + '</span>' : '') + '</div>';
+      }
+      card.innerHTML =
+        '<div class="prod-title">' + p.nome + '</div>' +
+        hRegra +
+        '<div class="prices">' +
+          '<div class="p-box"><span class="p-label">Preço Comum</span><span class="p-val">' + fmt(p.comum) + '</span></div>' +
+          '<div class="p-box cartao"><span class="p-label">Cartão Tenda</span><span class="p-val">' + fmt(p.cartao) + '</span></div>' +
+        '</div>' +
+        '<button class="btn-add" onclick="adicionar(' + p.id + ')">+ Adicionar ao Carrinho</button>';
+      box.appendChild(card);
+    }
+  }
 
-                        var cartao = comum;
-                        var regra = "";
+  function filtrar() {
+    var q = document.getElementById("searchInput").value.toLowerCase();
+    desenhar(produtos.filter(function(p) { return p.nome.toLowerCase().indexOf(q) !== -1; }));
+  }
 
-                        if (msg1.toLowerCase().indexOf("cart") !== -1) {
-                            cartao = limparNumero(msg2) || comum;
-                            regra = msg3 ? "Cartão Tenda: " + msg3 : "Exclusivo Cartão Tenda";
-                        } else if (msg1.toLowerCase().indexOf("pague") !== -1) {
-                            cartao = limparNumero(msg3) || comum;
-                            regra = "Promoção: " + msg1 + " " + msg2;
-                        }
+  function adicionar(id) {
+    for (var i = 0; i < produtos.length; i++) {
+      if (produtos[i].id === id) { carrinho.push(produtos[i]); break; }
+    }
+    placar();
+  }
 
-                        var matchSku = img.match(/\/(\d{4,13})/);
-                        var codigo = matchSku ? matchSku : "ITEM-" + i;
+  function limpar() {
+    carrinho = [];
+    document.getElementById("searchInput").value = "";
+    desenhar(produtos);
+    placar();
+  }
 
-                        produtos.push({ codigo: codigo, img: img, nome: nome, comum: comum, cartao: cartao, regra: regra });
-                    }
-                    
-                    st.innerText = "● Online (" + produtos.length + " produtos ativos)";
-                    renderizar(produtos);
-                })
-                .catch(function() {
-                    st.innerText = "Erro de conexão. Toque em Atualizar.";
-                });
-        }
+  function placar() {
+    var c1 = 0, c2 = 0;
+    for (var i = 0; i < carrinho.length; i++) { c1 += carrinho[i].comum; c2 += carrinho[i].cartao; }
+    document.getElementById("qtdItens").innerText = carrinho.length;
+    document.getElementById("totalComum").innerText = fmt(c1);
+    document.getElementById("totalCartao").innerText = fmt(c2);
+    document.getElementById("totalEconomia").innerText = fmt(c1 - c2);
+  }
 
-        function renderizar(lista) {
-            var box = document.getElementById("listaProdutos");
-            box.innerHTML = "";
-            
-            if (lista.length === 0) {
-                box.innerHTML = '<p class="text-center text-gray-500 text-sm py-6">Nenhum produto encontrado.</p>';
-                return;
-            }
-
-            for (var i = 0; i < lista.length; i++) {
-                var p = lista[i];
-                var econ = p.comum - p.cartao;
-                var div = document.createElement("div");
-                div.className = "bg-white p-3.5 rounded-xl shadow-sm border border-gray-200 flex flex-col gap-2.5";
-
-                var hImg = p.img ? '<img src="' + p.img + '" class="w-14 h-14 object-contain rounded border border-gray-100 shrink-0">' : '';
-                var hRegra = "";
-                if (p.regra) {
-                    var hEcon = econ > 0 ? '<span class="text-green-700 font-extrabold">-' + formatarMoeda(econ) + '/un</span>' : '';
-                    hRegra = '<div class="bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold px-2.5 py-1 rounded-md flex justify-between items-center"><span>⚡ ' + p.regra + '</span>' + hEcon + '</div>';
-                }
-
-                div.innerHTML = 
-                    '<div class="flex items-center gap-3">' +
-                        hImg +
-                        '<div class="flex-1 min-w-0">' +
-                            '<span class="text-[10px] font-mono bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">Cód: ' + p.codigo + '</span>' +
-                            '<h2 class="font-bold text-gray-800 text-sm mt-0.5 leading-snug">' + p.nome + '</h2>' +
-                        '</div>' +
-                    '</div>' +
-                    hRegra +
-                    '<div class="grid grid-cols-2 gap-2 text-center">' +
-                        '<div class="bg-gray-50 p-1.5 rounded border border-gray-200">' +
-                            '<span class="block text-[10px] text-gray-500 uppercase">Preço Comum</span>' +
-                            '<span class="font-bold text-gray-700 text-sm">' + formatarMoeda(p.comum) + '</span>' +
-                        '</div>' +
-                        '<div class="bg-blue-50 p-1.5 rounded border-2 border-blue-600">' +
-                            '<span class="block text-[10px] text-blue-800 font-extrabold uppercase">Cartão Tenda</span>' +
-                            '<span class="font-extrabold text-blue-700 text-base">' + formatarMoeda(p.cartao) + '</span>' +
-                        '</div>' +
-                    '</div>' +
-                    '<button onclick="add(\'' + p.codigo + '\')" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-lg text-xs uppercase tracking-wide">+ Adicionar ao Carrinho</button>';
-
-                box.appendChild(div);
-            }
-        }
-
-        function filtrarProdutos() {
-            var t = document.getElementById("searchInput").value.toLowerCase().trim();
-            renderizar(produtos.filter(function(p) {
-                return p.nome.toLowerCase().indexOf(t) !== -1 || p.codigo.indexOf(t) !== -1;
-            }));
-        }
-
-        function abrirCamera() {
-            document.getElementById("cameraContainer").classList.remove("hidden");
-            html5QrCode = new Html5Qrcode("reader");
-            html5QrCode.start(
+  function limparNum(v) {
+    if (!v) return 0;
