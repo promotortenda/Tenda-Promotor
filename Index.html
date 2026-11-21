@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tenda Promotor</title>
-<script src="https://unpkg.com" type="text/javascript"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
@@ -14,20 +13,14 @@
   .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
   .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
   main { max-width: 500px; margin: 0 auto; padding: 14px; }
-  
-  /* Área da Câmera */
-  #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-  #reader { width: 100%; }
+  #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; position: relative; }
+  video { width: 100%; max-height: 240px; object-fit: cover; display: block; }
+  .scan-line { position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: #ef4444; box-shadow: 0 0 8px #ef4444; }
   .btn-close-cam { width: 100%; background: #374151; color: #fff; border: none; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
-
-  /* Busca + Botão Bip */
   .search-box { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .search-row { display: flex; gap: 8px; }
   input { flex: 1; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background: #f9fafb; outline: none; min-width: 0; }
-  input:focus { border-color: #b91c1c; background: #fff; }
-  .btn-bip { background: #1d4ed8; color: #fff; border: none; padding: 0 14px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; shrink: 0; }
-  .btn-bip:active { background: #1e40af; }
-
+  .btn-bip { background: #1d4ed8; color: #fff; border: none; padding: 0 14px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; }
   .card { background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 12px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .ean-tag { display: inline-block; font-size: 10px; font-family: monospace; background: #f3f4f6; color: #6b7280; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; }
   .prod-title { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 8px; line-height: 1.35; }
@@ -41,8 +34,6 @@
   .p-val { font-size: 15px; font-weight: 700; color: #374151; }
   .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
   .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
-  .btn-add:active { background: #991b1b; }
-  
   footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
   .foot-inner { max-width: 500px; margin: 0 auto; }
   .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
@@ -53,7 +44,6 @@
   .t-cartao { font-size: 15px; font-weight: 800; color: #1d4ed8; }
   .t-econ-box { background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 2px; }
   .t-econ { font-size: 15px; font-weight: 800; color: #15803d; }
-  .empty-msg { text-align: center; padding: 24px 12px; color: #6b7280; font-size: 14px; background: #fff; border-radius: 12px; border: 1px dashed #d1d5db; }
 </style>
 </head>
 <body>
@@ -62,20 +52,19 @@
   <div class="top-row">
     <div>
       <h1>TENDA PROMOTOR</h1>
-      <div id="statusBase" class="status">● Online (Câmera + Base Ativa)</div>
+      <div id="statusBase" class="status">● Online (Base Ativa)</div>
     </div>
-    <button class="btn-sync" onclick="limpar()">↻ Limpar Busca</button>
+    <button class="btn-sync" onclick="limpar()">↻ Limpar</button>
   </div>
 </header>
 
 <main>
-  <!-- Caixa da Câmera -->
   <div id="camBox">
-    <div id="reader"></div>
+    <video id="videoCam" playsinline autoplay></video>
+    <div class="scan-line"></div>
     <button class="btn-close-cam" onclick="fecharCamera()">✕ Fechar Câmera</button>
   </div>
 
-  <!-- Busca + Botão Bip -->
   <div class="search-box">
     <div class="search-row">
       <input type="text" id="searchInput" oninput="filtrar()" placeholder="Nome ou código EAN...">
@@ -135,7 +124,8 @@
     {id:22, ean:"7898952411029", nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
   ];
   var carrinho = [];
-  var scanner = null;
+  var streamCam = null;
+  var intervaloScan = null;
 
   function fmt(v) {
     return "R$ " + v.toFixed(2).replace(".", ",");
@@ -144,6 +134,13 @@
   function desenhar(lista) {
     var box = document.getElementById("lista");
     box.innerHTML = "";
-    
-    if (lista.length === 0) {
-      var termo = document.getElementById("searchInput").value;
+    for (var i = 0; i < lista.length; i++) {
+      var p = lista[i];
+      var econ = p.comum - p.cartao;
+      var card = document.createElement("div");
+      card.className = "card";
+      var hRegra = "";
+      if (p.regra) {
+        hRegra = '<div class="regra"><span>⚡ ' + p.regra + '</span>' + (econ > 0 ? '<span class="econ-tag">-' + fmt(econ) + '</span>' : '') + '</div>';
+      }
+      card.innerHTML =
