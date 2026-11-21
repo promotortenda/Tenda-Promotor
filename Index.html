@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tenda Promotor</title>
+<script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
@@ -11,11 +12,12 @@
   .top-row { max-width: 500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
   h1 { font-size: 19px; font-weight: 800; letter-spacing: -0.5px; }
   .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
+  .status.erro { color: #fecaca; }
   .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
   main { max-width: 500px; margin: 0 auto; padding: 14px; }
   #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; position: relative; }
   video { width: 100%; max-height: 240px; object-fit: cover; display: block; }
-  .scan-line { position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+  .scan-line { position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: #ef4444; box-shadow: 0 0 8px #ef4444; pointer-events: none; }
   .btn-close-cam { width: 100%; background: #374151; color: #fff; border: none; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
   .search-box { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .search-row { display: flex; gap: 8px; }
@@ -34,6 +36,7 @@
   .p-val { font-size: 15px; font-weight: 700; color: #374151; }
   .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
   .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+  .empty { text-align: center; color: #6b7280; font-size: 14px; padding: 24px 12px; background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; }
   footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
   .foot-inner { max-width: 500px; margin: 0 auto; }
   .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
@@ -60,7 +63,7 @@
 
 <main>
   <div id="camBox">
-    <video id="videoCam" playsinline autoplay></video>
+    <video id="videoCam" playsinline autoplay muted></video>
     <div class="scan-line"></div>
     <button class="btn-close-cam" onclick="fecharCamera()">✕ Fechar Câmera</button>
   </div>
@@ -126,21 +129,220 @@
   var carrinho = [];
   var streamCam = null;
   var intervaloScan = null;
+  var zxingReader = null;
+  var canvasScan = document.createElement("canvas");
 
   function fmt(v) {
-    return "R$ " + v.toFixed(2).replace(".", ",");
+    return "R$ " + Number(v || 0).toFixed(2).replace(".", ",");
+  }
+
+  function setStatus(texto, isErro) {
+    var el = document.getElementById("statusBase");
+    el.textContent = texto;
+    el.className = isErro ? "status erro" : "status";
   }
 
   function desenhar(lista) {
     var box = document.getElementById("lista");
     box.innerHTML = "";
+
+    if (!lista || lista.length === 0) {
+      box.innerHTML = '<div class="empty">Nenhum produto encontrado para o filtro atual.</div>';
+      return;
+    }
+
     for (var i = 0; i < lista.length; i++) {
       var p = lista[i];
       var econ = p.comum - p.cartao;
       var card = document.createElement("div");
       card.className = "card";
+
       var hRegra = "";
       if (p.regra) {
         hRegra = '<div class="regra"><span>⚡ ' + p.regra + '</span>' + (econ > 0 ? '<span class="econ-tag">-' + fmt(econ) + '</span>' : '') + '</div>';
       }
+
       card.innerHTML =
+        '<span class="ean-tag">EAN: ' + p.ean + '</span>' +
+        '<div class="prod-title">' + p.nome + '</div>' +
+        hRegra +
+        '<div class="prices">' +
+          '<div class="p-box">' +
+            '<span class="p-label">Preço Comum</span>' +
+            '<span class="p-val">' + fmt(p.comum) + '</span>' +
+          '</div>' +
+          '<div class="p-box cartao">' +
+            '<span class="p-label">Cartão Tenda</span>' +
+            '<span class="p-val">' + fmt(p.cartao) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<button class="btn-add" onclick="adicionarCarrinho(' + p.id + ')">+ Adicionar ao Carrinho</button>';
+
+      box.appendChild(card);
+    }
+  }
+
+  function filtrar() {
+    var termo = document.getElementById("searchInput").value.toLowerCase().trim();
+    if (!termo) {
+      desenhar(produtos);
+      return;
+    }
+    var filtrados = produtos.filter(function(p) {
+      return p.nome.toLowerCase().indexOf(termo) !== -1 || p.ean.indexOf(termo) !== -1;
+    });
+    desenhar(filtrados);
+  }
+
+  function adicionarCarrinho(id) {
+    var item = produtos.find(function(p) { return p.id === id; });
+    if (item) {
+      carrinho.push(item);
+      atualizarPlacar();
+    }
+  }
+
+  function atualizarPlacar() {
+    var somaComum = 0;
+    var somaCartao = 0;
+    for (var i = 0; i < carrinho.length; i++) {
+      somaComum += carrinho[i].comum;
+      somaCartao += carrinho[i].cartao;
+    }
+    var economia = Math.max(0, somaComum - somaCartao);
+
+    document.getElementById("qtdItens").textContent = carrinho.length;
+    document.getElementById("totalComum").textContent = fmt(somaComum);
+    document.getElementById("totalCartao").textContent = fmt(somaCartao);
+    document.getElementById("totalEconomia").textContent = fmt(economia);
+  }
+
+  function limpar() {
+    carrinho = [];
+    document.getElementById("searchInput").value = "";
+    atualizarPlacar();
+    filtrar();
+    setStatus("● Online (Base Ativa)", false);
+  }
+
+  function processarCodigoLido(codigo) {
+    if (!codigo) return;
+    var limpo = String(codigo).trim();
+    document.getElementById("searchInput").value = limpo;
+    filtrar();
+    fecharCamera();
+    setStatus("● Código lido: " + limpo, false);
+  }
+
+  function iniciarLeituraContinua(video) {
+    if (intervaloScan) {
+      clearInterval(intervaloScan);
+      intervaloScan = null;
+    }
+
+    var nativo = null;
+    if ("BarcodeDetector" in window) {
+      try {
+        nativo = new window.BarcodeDetector({
+          formats: ["ean_13", "ean_8", "upc_a", "upc_e", "code_128"]
+        });
+      } catch (e) {
+        nativo = null;
+      }
+    }
+
+    if (!zxingReader && window.ZXing && window.ZXing.BrowserMultiFormatReader) {
+      try {
+        zxingReader = new window.ZXing.BrowserMultiFormatReader();
+      } catch (e) {
+        zxingReader = null;
+      }
+    }
+
+    intervaloScan = setInterval(async function() {
+      if (!video || video.readyState < 2 || video.videoWidth === 0) return;
+
+      if (nativo) {
+        try {
+          var codigos = await nativo.detect(video);
+          if (codigos && codigos.length > 0 && codigos[0].rawValue) {
+            processarCodigoLido(codigos[0].rawValue);
+            return;
+          }
+        } catch (e) {}
+      }
+
+      if (zxingReader && zxingReader.decodeFromCanvas) {
+        try {
+          canvasScan.width = video.videoWidth;
+          canvasScan.height = video.videoHeight;
+          var ctx = canvasScan.getContext("2d");
+          ctx.drawImage(video, 0, 0, canvasScan.width, canvasScan.height);
+          var res = zxingReader.decodeFromCanvas(canvasScan);
+          if (res && res.getText()) {
+            processarCodigoLido(res.getText());
+          }
+        } catch (e) {}
+      }
+    }, 350);
+  }
+
+  async function abrirCamera() {
+    fecharCamera();
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      setStatus("● Câmera não suportada neste navegador", true);
+      return;
+    }
+
+    var camBox = document.getElementById("camBox");
+    var video = document.getElementById("videoCam");
+
+    try {
+      setStatus("● Solicitando câmera...", false);
+      try {
+        streamCam = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "environment" },
+          audio: false
+        });
+      } catch (errRear) {
+        streamCam = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
+
+      video.srcObject = streamCam;
+      camBox.style.display = "block";
+      await video.play();
+      setStatus("● Câmera ativa — aponte para o código EAN", false);
+      iniciarLeituraContinua(video);
+    } catch (err) {
+      setStatus("● Não foi possível abrir a câmera (verifique a permissão)", true);
+    }
+  }
+
+  function fecharCamera() {
+    if (intervaloScan) {
+      clearInterval(intervaloScan);
+      intervaloScan = null;
+    }
+    if (streamCam) {
+      var tracks = streamCam.getTracks();
+      for (var i = 0; i < tracks.length; i++) {
+        tracks[i].stop();
+      }
+      streamCam = null;
+    }
+    var video = document.getElementById("videoCam");
+    if (video) {
+      video.srcObject = null;
+    }
+    document.getElementById("camBox").style.display = "none";
+  }
+
+  desenhar(produtos);
+  atualizarPlacar();
+</script>
+</body>
+</html>
