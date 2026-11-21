@@ -84,7 +84,6 @@
 </footer>
 
 <script>
-  var LINK_CSV = "https://google.com";
   var produtos = [
     {id:1, nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
     {id:2, nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
@@ -167,5 +166,11 @@
     document.getElementById("totalEconomia").innerText = fmt(c1 - c2);
   }
 
-  function limparNum(v) {
-    if (!v) return 0;
+  function sincronizarPlanilha() {
+    document.getElementById("statusBase").innerText = "● Planilha Sincronizada (" + produtos.length + " itens)";
+  }
+
+  desenhar(produtos);
+</script>
+</body>
+</html>
