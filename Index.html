@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenda Promotor • Preços & Economia</title>
+    <script src="https://tailwindcss.com"></script>
+    <script src="https://unpkg.com" type="text/javascript"></script>
+</head>
+<body class="bg-gray-100 pb-40">
+
+    <!-- Cabeçalho -->
+    <header class="bg-red-700 text-white p-4 shadow-md sticky top-0 z-20">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight">TENDA <span class="font-light">PROMOTOR</span></h1>
+                <p id="statusBase" class="text-xs text-red-100">Sincronizando tabela...</p>
+            </div>
+            <button onclick="carregarDados()" class="bg-red-800 hover:bg-red-900 text-xs font-bold px-3 py-1.5 rounded-lg border border-red-500">
+                ↻ Atualizar
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 space-y-4">
+
+        <!-- Área da Câmera -->
+        <div id="cameraContainer" class="hidden bg-black rounded-xl overflow-hidden shadow-lg">
+            <div id="reader" class="w-full"></div>
+            <button onclick="fecharCamera()" class="w-full bg-gray-800 text-white py-2.5 text-xs font-bold uppercase">
+                ✕ Fechar Câmera
+            </button>
+        </div>
+
+        <!-- Barra de Busca e Botão Câmera -->
+        <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+            <div class="flex gap-2">
+                <input type="text" id="searchInput" oninput="filtrarProdutos()" placeholder="Buscar produto (ex: Bauducco, Feijão)..." 
+                    class="w-full px-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-600">
+                <button onclick="abrirCamera()" 
+                    class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1 shrink-0 shadow">
+                    📷 Bip
+                </button>
+            </div>
+        </div>
+
+        <!-- Lista de Produtos -->
+        <div id="listaProdutos" class="space-y-3"></div>
+
+    </main>
+
+    <!-- Placar Fixo do Carrinho -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-red-600 shadow-2xl p-3 z-30">
+        <div class="max-w-md mx-auto">
+            <div class="flex justify-between items-center mb-1.5">
+                <span class="text-xs font-bold text-gray-600 uppercase">Carrinho (<span id="qtdItens">0</span> itens)</span>
+                <button onclick="limparCarrinho()" class="text-xs text-red-600 underline font-medium">Limpar</button>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-2 text-center bg-gray-50 p-2 rounded-lg border border-gray-200">
+                <div>
+                    <p class="text-[10px] text-gray-500 uppercase">Preço Comum</p>
+                    <p id="totalComum" class="text-sm font-bold text-gray-700 line-through">R$ 0,00</p>
+                </div>
+                <div>
+                    <p class="text-[10px] text-blue-700 font-bold uppercase">Cartão Tenda</p>
+                    <p id="totalCartao" class="text-base font-extrabold text-blue-700">R$ 0,00</p>
+                </div>
+                <div class="bg-green-100 rounded p-0.5 border border-green-300">
+                    <p class="text-[10px] text-green-800 font-bold uppercase">Economia</p>
+                    <p id="totalEconomia" class="text-base font-extrabold text-green-700">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var LINK_PLANILHA = "https://google.com";
+        var produtos = [];
+        var carrinho = [];
+        var html5QrCode;
+
+        function limparNumero(v) {
+            if (!v) return 0;
+            var limpo = v.replace(/[^0-9,]/g, "").replace(",", ".");
+            return parseFloat(limpo) || 0;
+        }
+
+        function formatarMoeda(v) {
+            return "R$ " + v.toFixed(2).replace(".", ",");
+        }
+
+        function carregarDados() {
+            var st = document.getElementById("statusBase");
+            st.innerText = "Sincronizando planilha...";
+            
+            fetch(LINK_PLANILHA + "&t=" + Date.now())
+                .then(function(r) { return r.text(); })
+                .then(function(csv) {
+                    var linhas = csv.split(/\r?\n/);
+                    produtos = [];
+                    
+                    for (var i = 1; i < linhas.length; i++) {
+                        var cols = linhas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        if (cols.length < 4) continue;
+                        
+                        var img = (cols || "").replace(/^"|"$/g, "").trim();
+                        var nome = (cols || "").replace(/^"|"$/g, "").trim();
+                        var comum = limparNumero(cols);
+                        if (!nome || comum === 0) continue;
+
+                        var msg1 = (cols || "").replace(/^"|"$/g, "").trim();
+                        var msg2 = (cols || "").replace(/^"|"$/g, "").trim();
+                        var msg3 = (cols || "").replace(/^"|"$/g, "").trim();
+
+                        var cartao = comum;
+                        var regra = "";
+
+                        if (msg1.toLowerCase().indexOf("cart") !== -1) {
+                            cartao = limparNumero(msg2) || comum;
+                            regra = msg3 ? "Cartão Tenda: " + msg3 : "Exclusivo Cartão Tenda";
+                        } else if (msg1.toLowerCase().indexOf("pague") !== -1) {
+                            cartao = limparNumero(msg3) || comum;
+                            regra = "Promoção: " + msg1 + " " + msg2;
+                        }
+
+                        var matchSku = img.match(/\/(\d{4,13})/);
+                        var codigo = matchSku ? matchSku : "ITEM-" + i;
+
+                        produtos.push({ codigo: codigo, img: img, nome: nome, comum: comum, cartao: cartao, regra: regra });
+                    }
+                    
+                    st.innerText = "● Online (" + produtos.length + " produtos ativos)";
+                    renderizar(produtos);
+                })
+                .catch(function() {
+                    st.innerText = "Erro de conexão. Toque em Atualizar.";
+                });
+        }
+
+        function renderizar(lista) {
+            var box = document.getElementById("listaProdutos");
+            box.innerHTML = "";
+            
+            if (lista.length === 0) {
+                box.innerHTML = '<p class="text-center text-gray-500 text-sm py-6">Nenhum produto encontrado.</p>';
+                return;
+            }
+
+            for (var i = 0; i < lista.length; i++) {
+                var p = lista[i];
+                var econ = p.comum - p.cartao;
+                var div = document.createElement("div");
+                div.className = "bg-white p-3.5 rounded-xl shadow-sm border border-gray-200 flex flex-col gap-2.5";
+
+                var hImg = p.img ? '<img src="' + p.img + '" class="w-14 h-14 object-contain rounded border border-gray-100 shrink-0">' : '';
+                var hRegra = "";
+                if (p.regra) {
+                    var hEcon = econ > 0 ? '<span class="text-green-700 font-extrabold">-' + formatarMoeda(econ) + '/un</span>' : '';
+                    hRegra = '<div class="bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold px-2.5 py-1 rounded-md flex justify-between items-center"><span>⚡ ' + p.regra + '</span>' + hEcon + '</div>';
+                }
+
+                div.innerHTML = 
+                    '<div class="flex items-center gap-3">' +
+                        hImg +
+                        '<div class="flex-1 min-w-0">' +
+                            '<span class="text-[10px] font-mono bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">Cód: ' + p.codigo + '</span>' +
+                            '<h2 class="font-bold text-gray-800 text-sm mt-0.5 leading-snug">' + p.nome + '</h2>' +
+                        '</div>' +
+                    '</div>' +
+                    hRegra +
+                    '<div class="grid grid-cols-2 gap-2 text-center">' +
+                        '<div class="bg-gray-50 p-1.5 rounded border border-gray-200">' +
+                            '<span class="block text-[10px] text-gray-500 uppercase">Preço Comum</span>' +
+                            '<span class="font-bold text-gray-700 text-sm">' + formatarMoeda(p.comum) + '</span>' +
+                        '</div>' +
+                        '<div class="bg-blue-50 p-1.5 rounded border-2 border-blue-600">' +
+                            '<span class="block text-[10px] text-blue-800 font-extrabold uppercase">Cartão Tenda</span>' +
+                            '<span class="font-extrabold text-blue-700 text-base">' + formatarMoeda(p.cartao) + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<button onclick="add(\'' + p.codigo + '\')" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-lg text-xs uppercase tracking-wide">+ Adicionar ao Carrinho</button>';
+
+                box.appendChild(div);
+            }
+        }
+
+        function filtrarProdutos() {
+            var t = document.getElementById("searchInput").value.toLowerCase().trim();
+            renderizar(produtos.filter(function(p) {
+                return p.nome.toLowerCase().indexOf(t) !== -1 || p.codigo.indexOf(t) !== -1;
+            }));
+        }
+
+        function abrirCamera() {
+            document.getElementById("cameraContainer").classList.remove("hidden");
+            html5QrCode = new Html5Qrcode("reader");
+            html5QrCode.start(
