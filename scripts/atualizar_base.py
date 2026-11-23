@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import time
 from datetime import datetime, timezone, timedelta
 import urllib.error
@@ -19,12 +20,10 @@ HEADERS = {
     "Referer": "https://www.tendaatacado.com.br/",
 }
 
-ENDPOINTS_CANDIDATOS = [
-    "https://api.tendaatacado.com.br/api/public/store/search?q={query}&zipCode={cep}&page=1&limit=50",
-    "https://api.tendaatacado.com.br/api/public/store/search?q={query}&cep={cep}&page=1&limit=50",
-    "https://api.tendaatacado.com.br/api/public/catalog/search?q={query}&zipCode={cep}&page=1&limit=50",
-    "https://api.tendaatacado.com.br/api/public/products/search?q={query}&zipCode={cep}&page=1&limit=50",
-    "https://www.tendaatacado.com.br/api/public/store/search?q={query}&zipCode={cep}&page=1&limit=50",
+ENDPOINTS_JSON = [
+    "https://api.tendaatacado.com.br/api/public/store/search?query={query}&zipCode={cep}&page=1&limit=50",
+    "https://api.tendaatacado.com.br/api/public/store/search?query={query}&cep={cep}&page=1&limit=50",
+    "https://api.tendaatacado.com.br/api/public/store/search?query={query}&postalCode={cep}&page=1&limit=50",
 ]
 
 
@@ -43,10 +42,43 @@ def _extrair_itens(payload):
     return []
 
 
+def _parse_preco(valor):
+    if isinstance(valor, (int, float)):
+        return float(valor)
+    if isinstance(valor, str):
+        limpo = re.sub(r"[^\d,.]", "", valor).replace(",", ".")
+        try:
+            return float(limpo)
+        except ValueError:
+            return 0.0
+    return 0.0
+
+
+def _extrair_json_embutido_html(html_texto):
+    # Procura blocos JSON em scripts (ex.: __NEXT_DATA__ ou estado inicial da página)
+    match_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html_texto, re.DOTALL)
+    if match_next:
+        try:
+            return json.loads(match_next.group(1))
+        except Exception:
+            pass
+
+    for match in re.finditer(r'<script[^>]*>(.*?)</script>', html_texto, re.DOTALL):
+        trecho = match.group(1).strip()
+        if "products" in trecho and "{" in trecho:
+            idx = trecho.find("{")
+            if idx != -1:
+                try:
+                    return json.loads(trecho[idx:])
+                except Exception:
+                    continue
+    return None
+
+
 def buscar_produtos_tenda(cep: str):
     """
-    Testa endpoints públicos de catálogo/vitrine associados ao CEP informado.
-    Retorna lista padronizada no formato esperado pelo Index.html.
+    Consulta o endpoint ajustado com 'query=' e, se necessário, tenta extrair
+    dados embutidos da página de busca do Tenda para o CEP informado.
     """
     produtos_coletados = []
     vistos = set()
@@ -59,40 +91,56 @@ def buscar_produtos_tenda(cep: str):
     ]
 
     endpoint_ativo = None
+    usar_fallback_html = False
     erros_registrados = 0
 
     for termo in termos_busca:
         query = urllib.parse.quote(termo)
-        candidatos = [endpoint_ativo] if endpoint_ativo else ENDPOINTS_CANDIDATOS
-
         payload = None
-        for template in candidatos:
-            url = template.format(query=query, cep=cep)
-            req = urllib.request.Request(url, headers=HEADERS)
-            try:
-                with urllib.request.urlopen(req, timeout=20) as resp:
-                    if resp.status != 200:
-                        continue
-                    payload = json.loads(resp.read().decode("utf-8"))
-                    endpoint_ativo = template
-                    break
-            except urllib.error.HTTPError as e:
-                if erros_registrados < 5:
-                    corpo = ""
-                    try:
-                        corpo = e.read().decode("utf-8", errors="ignore")[:180].strip()
-                    except Exception:
-                        corpo = ""
-                    print(f"[Aviso] '{termo}' em {url} -> HTTP {e.code} {e.reason} {corpo}")
-                    erros_registrados += 1
-            except Exception as e:
-                if erros_registrados < 5:
-                    print(f"[Aviso] Falha ao consultar termo '{termo}': {e}")
-                    erros_registrados += 1
 
-        if payload is None:
-            time.sleep(1.0)
-            continue
+        if not usar_fallback_html:
+            candidatos = [endpoint_ativo] if endpoint_ativo else ENDPOINTS_JSON
+            for template in candidatos:
+                url = template.format(query=query, cep=cep)
+                req = urllib.request.Request(url, headers=HEADERS)
+                try:
+                    with urllib.request.urlopen(req, timeout=20) as resp:
+                        if resp.status != 200:
+                            continue
+                        payload = json.loads(resp.read().decode("utf-8"))
+                        endpoint_ativo = template
+                        break
+                except urllib.error.HTTPError as e:
+                    if erros_registrados < 5:
+                        corpo = ""
+                        try:
+                            corpo = e.read().decode("utf-8", errors="ignore")[:180].strip()
+                        except Exception:
+                            corpo = ""
+                        print(f"[Aviso] '{termo}' em {url} -> HTTP {e.code} {e.reason} {corpo}")
+                        erros_registrados += 1
+                except Exception as e:
+                    if erros_registrados < 5:
+                        print(f"[Aviso] Falha ao consultar termo '{termo}': {e}")
+                        erros_registrados += 1
+
+            if endpoint_ativo is None and termo == "feijao":
+                usar_fallback_html = True
+
+        if usar_fallback_html or payload is None:
+            url_html = f"https://www.tendaatacado.com.br/busca?q={query}"
+            headers_html = dict(HEADERS)
+            headers_html["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            req_html = urllib.request.Request(url_html, headers=headers_html)
+            try:
+                with urllib.request.urlopen(req_html, timeout=20) as resp:
+                    if resp.status == 200:
+                        html_str = resp.read().decode("utf-8", errors="ignore")
+                        payload = _extrair_json_embutido_html(html_str)
+            except Exception as e:
+                if erros_registrados < 6:
+                    print(f"[Aviso] Fallback HTML falhou para '{termo}': {e}")
+                    erros_registrados += 1
 
         itens = _extrair_itens(payload)
 
@@ -109,8 +157,8 @@ def buscar_produtos_tenda(cep: str):
                 continue
             vistos.add(chave)
 
-            preco_comum = float(item.get("price") or item.get("regularPrice") or item.get("listPrice") or 0)
-            preco_cartao = float(
+            preco_comum = _parse_preco(item.get("price") or item.get("regularPrice") or item.get("listPrice") or 0)
+            preco_cartao = _parse_preco(
                 item.get("cardPrice")
                 or item.get("tendaCardPrice")
                 or item.get("promotionalPrice")
