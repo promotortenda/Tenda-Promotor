@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Executar atualização de produtos (CEP 13255280)
+        run: python scripts/atualizar_base.py
+
       - name: Salvar data/produtos.json se houver alterações
         run: |
           if [ -f "data/produtos.json" ]; then
