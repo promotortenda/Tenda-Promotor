@@ -1,0 +1,3224 @@
+{
+  "atualizadoEm": "2026-11-23T14:08:55-03:00",
+  "loja": "Itatiba",
+  "cep": "13255-280",
+  "total": 402,
+  "produtos": [
+    {
+      "id": 1,
+      "ean": "7898910194680",
+      "nome": "Arroz Tipo 1 Select 1Kg",
+      "comum": 4.09,
+      "cartao": 4.09,
+      "regra": ""
+    },
+    {
+      "id": 2,
+      "ean": "7898910194697",
+      "nome": "Arroz Tipo 1 Select 5Kg",
+      "comum": 21.09,
+      "cartao": 21.09,
+      "regra": ""
+    },
+    {
+      "id": 3,
+      "ean": "7896038357017",
+      "nome": "Arroz Arbório Urbano 1kg",
+      "comum": 20.7,
+      "cartao": 20.7,
+      "regra": ""
+    },
+    {
+      "id": 4,
+      "ean": "7896062699961",
+      "nome": "Arroz Tipo 1 Solito 5kg",
+      "comum": 21.59,
+      "cartao": 21.59,
+      "regra": ""
+    },
+    {
+      "id": 5,
+      "ean": "7896086419774",
+      "nome": "Arroz Tipo 1 Pateko 5kg",
+      "comum": 22.09,
+      "cartao": 22.09,
+      "regra": ""
+    },
+    {
+      "id": 6,
+      "ean": "7896230400139",
+      "nome": "Arroz Tipo 1 Albaruska 5kg",
+      "comum": 28.59,
+      "cartao": 28.59,
+      "regra": ""
+    },
+    {
+      "id": 7,
+      "ean": "7896006755517",
+      "nome": "Arroz Integral Camil 1kg",
+      "comum": 7.39,
+      "cartao": 7.39,
+      "regra": ""
+    },
+    {
+      "id": 8,
+      "ean": "7896006711155",
+      "nome": "Arroz Branco Camil Tipo 1 5kg",
+      "comum": 24.69,
+      "cartao": 24.69,
+      "regra": ""
+    },
+    {
+      "id": 9,
+      "ean": "7896230400443",
+      "nome": "Arroz Integral Albaruska 1kg",
+      "comum": 5.79,
+      "cartao": 5.79,
+      "regra": ""
+    },
+    {
+      "id": 10,
+      "ean": "7896290300011",
+      "nome": "Arroz Tipo 1 Prato Fino 5kg",
+      "comum": 30.39,
+      "cartao": 30.39,
+      "regra": ""
+    },
+    {
+      "id": 11,
+      "ean": "7896290300141",
+      "nome": "Arroz Tipo 1 Prato Fino 2kg",
+      "comum": 12.39,
+      "cartao": 12.39,
+      "regra": ""
+    },
+    {
+      "id": 12,
+      "ean": "7898910194703",
+      "nome": "Arroz Parboilizado Select 5kg",
+      "comum": 23.39,
+      "cartao": 23.39,
+      "regra": ""
+    },
+    {
+      "id": 13,
+      "ean": "7896290300332",
+      "nome": "Arroz Parboilizado Prato Fino 5kg",
+      "comum": 33.49,
+      "cartao": 33.49,
+      "regra": ""
+    },
+    {
+      "id": 14,
+      "ean": "7896230400245",
+      "nome": "Arroz de Pilão Tipo 1 Albaruska 1Kg",
+      "comum": 6.19,
+      "cartao": 6.19,
+      "regra": ""
+    },
+    {
+      "id": 15,
+      "ean": "7896062601063",
+      "nome": "Arroz Parboilizado Tipo 1 Integral Solito 1kg",
+      "comum": 5.29,
+      "cartao": 5.29,
+      "regra": ""
+    },
+    {
+      "id": 16,
+      "ean": "7896079431158",
+      "nome": "Arroz Namorado Branco Tipo 1 5kg",
+      "comum": 23.69,
+      "cartao": 23.69,
+      "regra": ""
+    },
+    {
+      "id": 17,
+      "ean": "7896006701156",
+      "nome": "Arroz Momiji Camil 5kg",
+      "comum": 48.9,
+      "cartao": 48.9,
+      "regra": ""
+    },
+    {
+      "id": 18,
+      "ean": "7896006795100",
+      "nome": "Arroz Integral Camil 2kg",
+      "comum": 13.49,
+      "cartao": 13.49,
+      "regra": ""
+    },
+    {
+      "id": 19,
+      "ean": "7896038308057",
+      "nome": "Arroz Integral Urbano 1Kg",
+      "comum": 5.19,
+      "cartao": 5.19,
+      "regra": ""
+    },
+    {
+      "id": 20,
+      "ean": "7896116910103",
+      "nome": "Arroz Tipo 1 Kicaldo 5kg",
+      "comum": 22.09,
+      "cartao": 22.09,
+      "regra": ""
+    },
+    {
+      "id": 21,
+      "ean": "7896116900029",
+      "nome": "Feijão Carioca Tipo 1 Kicaldo 1kg",
+      "comum": 7.49,
+      "cartao": 7.49,
+      "regra": ""
+    },
+    {
+      "id": 22,
+      "ean": "7896116900425",
+      "nome": "Feijão Rajado Kicaldo 1Kg",
+      "comum": 13.39,
+      "cartao": 13.39,
+      "regra": ""
+    },
+    {
+      "id": 23,
+      "ean": "7896116900807",
+      "nome": "Feijão Branco Kicaldo 1kg",
+      "comum": 13.39,
+      "cartao": 13.39,
+      "regra": ""
+    },
+    {
+      "id": 24,
+      "ean": "7896116900821",
+      "nome": "Feijão Fradinho Kicaldo 1Kg",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 25,
+      "ean": "7896116900845",
+      "nome": "Feijão Vermelho Kicaldo 1kg",
+      "comum": 13.3,
+      "cartao": 13.3,
+      "regra": ""
+    },
+    {
+      "id": 26,
+      "ean": "7896006748939",
+      "nome": "Feijão Rosinha Tipo 1 Camil 500g",
+      "comum": 9.29,
+      "cartao": 9.29,
+      "regra": ""
+    },
+    {
+      "id": 27,
+      "ean": "7896006748885",
+      "nome": "Feijão Branco Tipo 1 Camil 500g",
+      "comum": 11.3,
+      "cartao": 11.3,
+      "regra": ""
+    },
+    {
+      "id": 28,
+      "ean": "7896116900128",
+      "nome": "Feijão Carioca da Casa 1kg",
+      "comum": 7.19,
+      "cartao": 7.19,
+      "regra": ""
+    },
+    {
+      "id": 29,
+      "ean": "7896401100097",
+      "nome": "Feijão Preto Tipo 1 Máximo 1kg",
+      "comum": 6.79,
+      "cartao": 6.79,
+      "regra": ""
+    },
+    {
+      "id": 30,
+      "ean": "7896006744115",
+      "nome": "Feijão Carioca Tipo 1 Camil 1kg",
+      "comum": 8.09,
+      "cartao": 8.09,
+      "regra": ""
+    },
+    {
+      "id": 31,
+      "ean": "7896401100042",
+      "nome": "Feijão Carioca Tipo 1 Máximo 1kg",
+      "comum": 7.79,
+      "cartao": 7.79,
+      "regra": ""
+    },
+    {
+      "id": 32,
+      "ean": "7896099100256",
+      "nome": "Feijão Carioca 5 Estrelas 1kg",
+      "comum": 6.69,
+      "cartao": 6.69,
+      "regra": ""
+    },
+    {
+      "id": 33,
+      "ean": "7896200115346",
+      "nome": "Feijão Carioca Broto Legal 1kg",
+      "comum": 8.69,
+      "cartao": 8.69,
+      "regra": ""
+    },
+    {
+      "id": 34,
+      "ean": "7896099100515",
+      "nome": "Feijão Preto Tipo 1 5 Estrelas 1Kg",
+      "comum": 5.79,
+      "cartao": 5.79,
+      "regra": ""
+    },
+    {
+      "id": 35,
+      "ean": "7896116902016",
+      "nome": "Feijão Carioca Orgânico Kicaldo 500g",
+      "comum": 7.59,
+      "cartao": 7.59,
+      "regra": ""
+    },
+    {
+      "id": 36,
+      "ean": "7898497680361",
+      "nome": "Feijão Preto Tipo 1 Select 1kg",
+      "comum": 5.89,
+      "cartao": 5.89,
+      "regra": ""
+    },
+    {
+      "id": 37,
+      "ean": "7898497680354",
+      "nome": "Feijão Carioca Tipo 1 Select 1kg",
+      "comum": 7.89,
+      "cartao": 7.89,
+      "regra": ""
+    },
+    {
+      "id": 38,
+      "ean": "7896022202101",
+      "nome": "Macarrão Instantâneo Lámen Feijão Bacon Renata 96g",
+      "comum": 1.69,
+      "cartao": 1.69,
+      "regra": ""
+    },
+    {
+      "id": 39,
+      "ean": "7891150088696",
+      "nome": "Tempero Pó para Feijão Knorr 50g 10 Unidades",
+      "comum": 7.19,
+      "cartao": 7.19,
+      "regra": ""
+    },
+    {
+      "id": 40,
+      "ean": "7891018001386",
+      "nome": "Café Torrado e Moído Tradicional Café Brasileiro 500g",
+      "comum": 23.99,
+      "cartao": 23.99,
+      "regra": ""
+    },
+    {
+      "id": 41,
+      "ean": "7896348301670",
+      "nome": "Café Solúvel Melitta 160g",
+      "comum": 35.9,
+      "cartao": 35.9,
+      "regra": ""
+    },
+    {
+      "id": 42,
+      "ean": "7896089088656",
+      "nome": "Café Solúvel em Pó Pilão Sachê 40g",
+      "comum": 6.59,
+      "cartao": 6.59,
+      "regra": ""
+    },
+    {
+      "id": 43,
+      "ean": "7891000300503",
+      "nome": "Café Solúvel NESCAFÉ Original 100g",
+      "comum": 22.49,
+      "cartao": 22.49,
+      "regra": ""
+    },
+    {
+      "id": 44,
+      "ean": "7891000029329",
+      "nome": "Café Solúvel Tradição Forte Nescafé 100g",
+      "comum": 22.49,
+      "cartao": 22.49,
+      "regra": ""
+    },
+    {
+      "id": 45,
+      "ean": "7898910194659",
+      "nome": "Café Almofada Tradicional Select 500g",
+      "comum": 22.99,
+      "cartao": 22.99,
+      "regra": ""
+    },
+    {
+      "id": 46,
+      "ean": "7891000307083",
+      "nome": "Café Solúvel Nescafé Tradição Forte Sachet 40g",
+      "comum": 7.49,
+      "cartao": 7.49,
+      "regra": ""
+    },
+    {
+      "id": 47,
+      "ean": "7896005800669",
+      "nome": "Café Solúvel Tradicional 3 Corações Vidro 100g",
+      "comum": 22.9,
+      "cartao": 22.9,
+      "regra": ""
+    },
+    {
+      "id": 48,
+      "ean": "7896045111077",
+      "nome": "Café com Leite Solúvel 3 Corações Lata 300g",
+      "comum": 17.9,
+      "cartao": 17.9,
+      "regra": ""
+    },
+    {
+      "id": 49,
+      "ean": "355744002927",
+      "nome": "Café Grão Premium Bravo 5kg - Sabor Intenso e Aromático",
+      "comum": 450.0,
+      "cartao": 450.0,
+      "regra": ""
+    },
+    {
+      "id": 50,
+      "ean": "7896348300895",
+      "nome": "Café Solúvel Granulado Tradicional Melitta Sachê 40g",
+      "comum": 8.39,
+      "cartao": 8.39,
+      "regra": ""
+    },
+    {
+      "id": 51,
+      "ean": "7896348300901",
+      "nome": "Café Solúvel Granulado Extraforte Melitta 40g",
+      "comum": 8.39,
+      "cartao": 8.39,
+      "regra": ""
+    },
+    {
+      "id": 52,
+      "ean": "7891000307120",
+      "nome": "Café Solúvel Nescafé  Original Extra Forte Sachet 40g",
+      "comum": 7.49,
+      "cartao": 7.49,
+      "regra": ""
+    },
+    {
+      "id": 53,
+      "ean": "7891018001393",
+      "nome": "Café Torrado e Moído Extraforte Café Brasileiro 500g",
+      "comum": 23.99,
+      "cartao": 23.99,
+      "regra": ""
+    },
+    {
+      "id": 54,
+      "ean": "7891018427599",
+      "nome": "Café Torrado e Moído Extraforte Café Brasileiro Pacote 250g",
+      "comum": 11.99,
+      "cartao": 11.99,
+      "regra": ""
+    },
+    {
+      "id": 55,
+      "ean": "7891018427650",
+      "nome": "Café Torrado e Moído a Vácuo Tradicional Café Brasileiro Pacote 500g",
+      "comum": 23.99,
+      "cartao": 23.99,
+      "regra": ""
+    },
+    {
+      "id": 56,
+      "ean": "7896089016239",
+      "nome": "Café Extraforte Caboclo 500g",
+      "comum": 23.99,
+      "cartao": 23.99,
+      "regra": ""
+    },
+    {
+      "id": 57,
+      "ean": "7896040500012",
+      "nome": "Café Extraforte Pelé 500g",
+      "comum": 23.99,
+      "cartao": 23.99,
+      "regra": ""
+    },
+    {
+      "id": 58,
+      "ean": "7896014500086",
+      "nome": "Café Extraforte Canecão 500g",
+      "comum": 21.99,
+      "cartao": 21.99,
+      "regra": ""
+    },
+    {
+      "id": 59,
+      "ean": "7896014500024",
+      "nome": "Café Tradicional Canecão 500g",
+      "comum": 21.99,
+      "cartao": 21.99,
+      "regra": ""
+    },
+    {
+      "id": 60,
+      "ean": "7898497682761",
+      "nome": "Óleo de Soja Select 900ml",
+      "comum": 7.69,
+      "cartao": 7.69,
+      "regra": ""
+    },
+    {
+      "id": 61,
+      "ean": "7891107101621",
+      "nome": "Óleo de Soja Soya Pet 900ml",
+      "comum": 7.89,
+      "cartao": 7.89,
+      "regra": ""
+    },
+    {
+      "id": 62,
+      "ean": "7896036090244",
+      "nome": "Óleo De Soja Liza 900ml",
+      "comum": 7.79,
+      "cartao": 7.79,
+      "regra": ""
+    },
+    {
+      "id": 63,
+      "ean": "7891080150456",
+      "nome": "Óleo de Milho Soya 900ml",
+      "comum": 14.9,
+      "cartao": 14.9,
+      "regra": ""
+    },
+    {
+      "id": 64,
+      "ean": "7896279600538",
+      "nome": "Óleo de Soja Coamo 900ml",
+      "comum": 7.59,
+      "cartao": 7.59,
+      "regra": ""
+    },
+    {
+      "id": 65,
+      "ean": "7891080150449",
+      "nome": "Óleo de Canola Soya 900ml",
+      "comum": 13.3,
+      "cartao": 13.3,
+      "regra": ""
+    },
+    {
+      "id": 66,
+      "ean": "7891080150463",
+      "nome": "Óleo de Girassol Soya 900ml",
+      "comum": 12.49,
+      "cartao": 12.49,
+      "regra": ""
+    },
+    {
+      "id": 67,
+      "ean": "7896036099254",
+      "nome": "Óleo de Algodão Liza 900ml",
+      "comum": 16.39,
+      "cartao": 16.39,
+      "regra": ""
+    },
+    {
+      "id": 68,
+      "ean": "5011987241916",
+      "nome": "Óleo de Motor Shell Helix SL 20W50 1L",
+      "comum": 35.9,
+      "cartao": 35.9,
+      "regra": ""
+    },
+    {
+      "id": 69,
+      "ean": "7896277400079",
+      "nome": "Óleo de Soja Vila Velha 18L",
+      "comum": 156.49,
+      "cartao": 156.49,
+      "regra": ""
+    },
+    {
+      "id": 70,
+      "ean": "7898247780297",
+      "nome": "Óleo de Soja Vitaliv 900ml",
+      "comum": 7.69,
+      "cartao": 7.69,
+      "regra": ""
+    },
+    {
+      "id": 71,
+      "ean": "7891080010460",
+      "nome": "Óleo de Girassol Legítimo 900ml",
+      "comum": 12.9,
+      "cartao": 12.9,
+      "regra": ""
+    },
+    {
+      "id": 72,
+      "ean": "7896036099612",
+      "nome": "Óleo de Milho Tipo 1 Liza 500ml",
+      "comum": 9.89,
+      "cartao": 9.89,
+      "regra": ""
+    },
+    {
+      "id": 73,
+      "ean": "7891080150524",
+      "nome": "Óleo de Algodão Soya Refinado 14,5kg",
+      "comum": 189.9,
+      "cartao": 189.9,
+      "regra": ""
+    },
+    {
+      "id": 74,
+      "ean": "7891080011054",
+      "nome": "Óleo de Soja Refinado Fry Max Soya 14,5kg",
+      "comum": 147.9,
+      "cartao": 147.9,
+      "regra": ""
+    },
+    {
+      "id": 75,
+      "ean": "7896498527753",
+      "nome": "Óleo de Motor API-SP SAE 0W-20 Luxoil Luxcar 1L",
+      "comum": 39.9,
+      "cartao": 39.9,
+      "regra": ""
+    },
+    {
+      "id": 76,
+      "ean": "5011987191532",
+      "nome": "Óleo para Motor Advance 4T 20W50 Shell 1L",
+      "comum": 35.9,
+      "cartao": 35.9,
+      "regra": ""
+    },
+    {
+      "id": 77,
+      "ean": "5011987863514",
+      "nome": "Óleo de Motor CH-4 Rimula R3 Multi 15W-40 Shell 1L",
+      "comum": 35.9,
+      "cartao": 35.9,
+      "regra": ""
+    },
+    {
+      "id": 78,
+      "ean": "5011987135895",
+      "nome": "Óleo de Motor Helix Ultra Professional AG 0W-20 Shell 1L",
+      "comum": 58.9,
+      "cartao": 58.9,
+      "regra": ""
+    },
+    {
+      "id": 79,
+      "ean": "7908448007458",
+      "nome": "Óleo Capilar Dabelle 45 ml Óleo Magico",
+      "comum": 33.9,
+      "cartao": 33.9,
+      "regra": ""
+    },
+    {
+      "id": 80,
+      "ean": "7898497686059",
+      "nome": "Açúcar Cristal Select 1kg",
+      "comum": 3.29,
+      "cartao": 3.29,
+      "regra": ""
+    },
+    {
+      "id": 81,
+      "ean": "7898497686042",
+      "nome": "Açúcar Refinado Select 1kg",
+      "comum": 3.39,
+      "cartao": 3.39,
+      "regra": ""
+    },
+    {
+      "id": 82,
+      "ean": "7891910020065",
+      "nome": "Açúcar Demerara União 1kg",
+      "comum": 6.99,
+      "cartao": 6.99,
+      "regra": ""
+    },
+    {
+      "id": 83,
+      "ean": "7891910000197",
+      "nome": "Açúcar Refinado União 1kg",
+      "comum": 3.79,
+      "cartao": 3.79,
+      "regra": ""
+    },
+    {
+      "id": 84,
+      "ean": "7896894900068",
+      "nome": "Açúcar Cristal Caravelas 1kg",
+      "comum": 3.29,
+      "cartao": 3.29,
+      "regra": ""
+    },
+    {
+      "id": 85,
+      "ean": "7896086421876",
+      "nome": "Açúcar Extra Fino Patéko 1Kg",
+      "comum": 3.09,
+      "cartao": 3.09,
+      "regra": ""
+    },
+    {
+      "id": 86,
+      "ean": "7898379440564",
+      "nome": "Açúcar Mascavo Jp Pereira 1 Kg",
+      "comum": 15.99,
+      "cartao": 15.99,
+      "regra": ""
+    },
+    {
+      "id": 87,
+      "ean": "7896894900235",
+      "nome": "Açúcar Demerara Caravelas Pacote 1kg",
+      "comum": 4.89,
+      "cartao": 4.89,
+      "regra": ""
+    },
+    {
+      "id": 88,
+      "ean": "7898206500409",
+      "nome": "Açúcar Orgânico Demerara Native 5kg",
+      "comum": 28.99,
+      "cartao": 28.99,
+      "regra": ""
+    },
+    {
+      "id": 89,
+      "ean": "7896894900013",
+      "nome": "Açúcar Refinado Caravelas 1kg",
+      "comum": 3.39,
+      "cartao": 3.39,
+      "regra": ""
+    },
+    {
+      "id": 90,
+      "ean": "7898206500010",
+      "nome": "Açúcar Orgânico Claro Native 1kg",
+      "comum": 6.99,
+      "cartao": 6.99,
+      "regra": ""
+    },
+    {
+      "id": 91,
+      "ean": "7891910020034",
+      "nome": "Açúcar Cristal Orgânico União 1Kg",
+      "comum": 6.49,
+      "cartao": 6.49,
+      "regra": ""
+    },
+    {
+      "id": 92,
+      "ean": "7898206500027",
+      "nome": "Açúcar Orgânico Dourado Native 1kg",
+      "comum": 7.99,
+      "cartao": 7.99,
+      "regra": ""
+    },
+    {
+      "id": 93,
+      "ean": "7896894900082",
+      "nome": "Açúcar cristal Colombo 5 kg",
+      "comum": 16.49,
+      "cartao": 16.49,
+      "regra": ""
+    },
+    {
+      "id": 94,
+      "ean": "17891910020161",
+      "nome": "Açúcar Cristal Orgânico União Sachê 5g 400 Unidades",
+      "comum": 17.69,
+      "cartao": 17.69,
+      "regra": ""
+    },
+    {
+      "id": 95,
+      "ean": "7891959009922",
+      "nome": "Açúcar Cristal União 5kg",
+      "comum": 17.99,
+      "cartao": 17.99,
+      "regra": ""
+    },
+    {
+      "id": 96,
+      "ean": "7891959014612",
+      "nome": "Açúcar Cristal União 1kg",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 97,
+      "ean": "7898460934286",
+      "nome": "Açúcar Cristal Select 5kg",
+      "comum": 15.69,
+      "cartao": 15.69,
+      "regra": ""
+    },
+    {
+      "id": 98,
+      "ean": "7896094919136",
+      "nome": "Adoçante Líquido Zero Açúcar Eritritol Zero Cal 65ml",
+      "comum": 17.9,
+      "cartao": 17.9,
+      "regra": ""
+    },
+    {
+      "id": 99,
+      "ean": "7896001250628",
+      "nome": "Adoçante Líquido Sucralose Línea 75ml",
+      "comum": 14.79,
+      "cartao": 14.79,
+      "regra": ""
+    },
+    {
+      "id": 100,
+      "ean": "7898215151722",
+      "nome": "Leite Longa Vida Desnatado Piracanjuba 1L",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 101,
+      "ean": "7898215151760",
+      "nome": "Leite Semidesnatado Piracanjuba 1L",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 102,
+      "ean": "8670009089324",
+      "nome": "Leite Longa Vida Integral Tirol 1L",
+      "comum": 5.35,
+      "cartao": 5.35,
+      "regra": ""
+    },
+    {
+      "id": 103,
+      "ean": "8670009789026",
+      "nome": "Leite Longa Vida Integral Ninho 1L",
+      "comum": 6.69,
+      "cartao": 6.69,
+      "regra": ""
+    },
+    {
+      "id": 104,
+      "ean": "7896283800801",
+      "nome": "Leite Longa Vida Integral com Tampa Jussara 1L",
+      "comum": 5.49,
+      "cartao": 5.49,
+      "regra": ""
+    },
+    {
+      "id": 105,
+      "ean": "8670009834658",
+      "nome": "Leite Longa Vida Integral com Tampa Italac 1L",
+      "comum": 5.59,
+      "cartao": 5.59,
+      "regra": ""
+    },
+    {
+      "id": 106,
+      "ean": "7898080640628",
+      "nome": "Leite Longa Vida Semidesnatado com Tampa Italac 1L",
+      "comum": 5.59,
+      "cartao": 5.59,
+      "regra": ""
+    },
+    {
+      "id": 107,
+      "ean": "7896569400206",
+      "nome": "Leite Longa Vida Integral Líder 1L",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 108,
+      "ean": "7898215151708",
+      "nome": "Leite Integral Piracanjuba 1L",
+      "comum": 5.69,
+      "cartao": 5.69,
+      "regra": ""
+    },
+    {
+      "id": 109,
+      "ean": "7898016050170",
+      "nome": "Leite Pasteurizado Integral Jamava 1L",
+      "comum": 5.49,
+      "cartao": 5.49,
+      "regra": ""
+    },
+    {
+      "id": 110,
+      "ean": "7896623100011",
+      "nome": "Leite Pasteurizado Homogeneizado Tipo A Integral Xandô Garrafa 1l",
+      "comum": 7.89,
+      "cartao": 7.89,
+      "regra": ""
+    },
+    {
+      "id": 111,
+      "ean": "7896229800018",
+      "nome": "Leite Pasteurizado Homogeneizado Tipo A Integral Fazenda Bela Vista Garrafa 1l",
+      "comum": 6.89,
+      "cartao": 6.89,
+      "regra": ""
+    },
+    {
+      "id": 112,
+      "ean": "8670009789033",
+      "nome": "Leite Longa Vida Desnatado Molico 1L",
+      "comum": 6.89,
+      "cartao": 6.89,
+      "regra": ""
+    },
+    {
+      "id": 113,
+      "ean": "7898080640635",
+      "nome": "Leite Longa Vida Desnatado com Tampa Italac 1L",
+      "comum": 5.59,
+      "cartao": 5.59,
+      "regra": ""
+    },
+    {
+      "id": 114,
+      "ean": "7891000076217",
+      "nome": "Leite Longa Vida Semidesnatado Levinho Ninho 1L",
+      "comum": 6.89,
+      "cartao": 6.89,
+      "regra": ""
+    },
+    {
+      "id": 115,
+      "ean": "7898215159018",
+      "nome": "Leite UHT Semidesnatado Zero Lactose +Protein Piracanjuba 1L",
+      "comum": 9.69,
+      "cartao": 9.69,
+      "regra": ""
+    },
+    {
+      "id": 116,
+      "ean": "7896283800818",
+      "nome": "Leite Desnatado Jussara 1L",
+      "comum": 5.49,
+      "cartao": 5.49,
+      "regra": ""
+    },
+    {
+      "id": 117,
+      "ean": "7896283800825",
+      "nome": "Leite Semidesnatado Jussara 1L",
+      "comum": 5.49,
+      "cartao": 5.49,
+      "regra": ""
+    },
+    {
+      "id": 118,
+      "ean": "7896229800056",
+      "nome": "Leite Tipo A Semidesnatado Fazenda Bela Vista 1L",
+      "comum": 7.99,
+      "cartao": 7.99,
+      "regra": ""
+    },
+    {
+      "id": 119,
+      "ean": "7896623100196",
+      "nome": "Leite Pasteurizado Homogeneizado Tipo A Semidesnatado Xandô Garrafa 1l",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 120,
+      "ean": "7896022201906",
+      "nome": "Macarrão Instantâneo Lámen Carne Renata 85g",
+      "comum": 1.69,
+      "cartao": 1.69,
+      "regra": ""
+    },
+    {
+      "id": 121,
+      "ean": "7891079000205",
+      "nome": "Macarrão Instantâneo Lámen Carne Nissin 85g",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 122,
+      "ean": "7891079000250",
+      "nome": "Macarrão Instantâneo Lámen Bacon Nissin 85g",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 123,
+      "ean": "7891079000212",
+      "nome": "Macarrão Instantâneo Lámen Galinha Nissin 85g",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 124,
+      "ean": "7898270962172",
+      "nome": "Macarrão Instantâneo Lámen Galinha Karui 78g",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 125,
+      "ean": "7896022201852",
+      "nome": "Macarrão Instantâneo Lámen Galinha Renata 85g",
+      "comum": 1.69,
+      "cartao": 1.69,
+      "regra": ""
+    },
+    {
+      "id": 126,
+      "ean": "7896022207410",
+      "nome": "Macarrão Instantâneo Lámen Carne Todeschini 85g",
+      "comum": 1.29,
+      "cartao": 1.29,
+      "regra": ""
+    },
+    {
+      "id": 127,
+      "ean": "7891079011515",
+      "nome": "Macarrão Instantâneo Yakissoba Nissin 500g",
+      "comum": 10.09,
+      "cartao": 10.09,
+      "regra": ""
+    },
+    {
+      "id": 128,
+      "ean": "7891079000434",
+      "nome": "Macarrão Instantâneo Talharim Frango Nissin 99g",
+      "comum": 4.65,
+      "cartao": 4.65,
+      "regra": ""
+    },
+    {
+      "id": 129,
+      "ean": "7891079001004",
+      "nome": "Macarrão Instantâneo Nissin Lámen Carne Suave 85g",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 130,
+      "ean": "7898460934835",
+      "nome": "Macarrão Instantâneo Sabor Carne Select 74g",
+      "comum": 1.69,
+      "cartao": 1.69,
+      "regra": ""
+    },
+    {
+      "id": 131,
+      "ean": "7891079006016",
+      "nome": "Macarrão Instantâneo Tipo Espaguete Nissin 500g",
+      "comum": 10.09,
+      "cartao": 10.09,
+      "regra": ""
+    },
+    {
+      "id": 132,
+      "ean": "7891079000243",
+      "nome": "Macarrão Instantâneo Lámen Legumes Nissin 85g",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 133,
+      "ean": "7896022207397",
+      "nome": "Macarrão Instantâneo Lámen Galinha Todeschini 85g",
+      "comum": 1.29,
+      "cartao": 1.29,
+      "regra": ""
+    },
+    {
+      "id": 134,
+      "ean": "7891079000427",
+      "nome": "Macarrão Instantâneo Talharim Bolonhesa Nissin 99g",
+      "comum": 4.65,
+      "cartao": 4.65,
+      "regra": ""
+    },
+    {
+      "id": 135,
+      "ean": "7891079013793",
+      "nome": "Macarrão Instantâneo Canja de Galinha Nissin Lámen 75g",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 136,
+      "ean": "7896022202187",
+      "nome": "Macarrão Instantâneo Lámen Galinha Renata 85g",
+      "comum": 1.69,
+      "cartao": 1.69,
+      "regra": ""
+    },
+    {
+      "id": 137,
+      "ean": "7891079012581",
+      "nome": "Macarrão Instantâneo Lámen Toque de Limão Nissin 85g",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 138,
+      "ean": "7891079001028",
+      "nome": "Macarrão Instantâneo Lámen Tomate Suave Nissin 85g",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 139,
+      "ean": "17891000376772",
+      "nome": "Biscoito Recheado Negresco 90g",
+      "comum": 2.09,
+      "cartao": 2.09,
+      "regra": ""
+    },
+    {
+      "id": 140,
+      "ean": "7896022205232",
+      "nome": "Biscoito Água e Sal Renata 360g",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 141,
+      "ean": "7896022205164",
+      "nome": "Biscoito Cream Cracker Renata 360g",
+      "comum": 3.49,
+      "cartao": 3.49,
+      "regra": ""
+    },
+    {
+      "id": 142,
+      "ean": "7891000402931",
+      "nome": "Biscoito com Chocolate Chocobiscuit GAROTO ao Leite 78g",
+      "comum": 6.19,
+      "cartao": 6.19,
+      "regra": ""
+    },
+    {
+      "id": 143,
+      "ean": "7896071030144",
+      "nome": "Biscoito Maisena Mabel 300g",
+      "comum": 4.69,
+      "cartao": 4.69,
+      "regra": ""
+    },
+    {
+      "id": 144,
+      "ean": "7896022205218",
+      "nome": "Biscoito Maria Renata 360g",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 145,
+      "ean": "7896003740226",
+      "nome": "Biscoito Maizena Marilan 300g",
+      "comum": 6.09,
+      "cartao": 6.09,
+      "regra": ""
+    },
+    {
+      "id": 146,
+      "ean": "7896003740264",
+      "nome": "Biscoito Manteiga Marilan 300g",
+      "comum": 6.09,
+      "cartao": 6.09,
+      "regra": ""
+    },
+    {
+      "id": 147,
+      "ean": "7896003740240",
+      "nome": "Biscoito Leite Marilan 300g",
+      "comum": 6.09,
+      "cartao": 6.09,
+      "regra": ""
+    },
+    {
+      "id": 148,
+      "ean": "7896022208028",
+      "nome": "Biscoito Cristal Renata 420g",
+      "comum": 6.19,
+      "cartao": 6.19,
+      "regra": ""
+    },
+    {
+      "id": 149,
+      "ean": "7896024761651",
+      "nome": "Biscoito Maisena Piraquê - 175g",
+      "comum": 4.79,
+      "cartao": 4.79,
+      "regra": ""
+    },
+    {
+      "id": 150,
+      "ean": "7896412852169",
+      "nome": "Biscoito Maizena Orquídea 320g",
+      "comum": 3.99,
+      "cartao": 3.99,
+      "regra": ""
+    },
+    {
+      "id": 151,
+      "ean": "7896022205201",
+      "nome": "Biscoito de Maizena Renata 360g",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 152,
+      "ean": "7896058258530",
+      "nome": "Biscoito Maizena Triunfo 345g",
+      "comum": 5.95,
+      "cartao": 5.95,
+      "regra": ""
+    },
+    {
+      "id": 153,
+      "ean": "7896003737417",
+      "nome": "Biscoito Marilan Teens Bauny 80g",
+      "comum": 4.89,
+      "cartao": 4.89,
+      "regra": ""
+    },
+    {
+      "id": 154,
+      "ean": "7896022207014",
+      "nome": "Biscoito Cream Cracker Galo 360g",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 155,
+      "ean": "7891000376881",
+      "nome": "Biscoito Recheado BONO Limao 90g",
+      "comum": 2.89,
+      "cartao": 2.89,
+      "regra": ""
+    },
+    {
+      "id": 156,
+      "ean": "7891962068022",
+      "nome": "Biscoito Chocolate Bauducco 335g",
+      "comum": 8.59,
+      "cartao": 8.59,
+      "regra": ""
+    },
+    {
+      "id": 157,
+      "ean": "7891203021120",
+      "nome": "Biscoito Salgado Wind Panco 500g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 158,
+      "ean": "7896058256406",
+      "nome": "Biscoito Salgado Salpet Triunfo 100g",
+      "comum": 1.79,
+      "cartao": 1.79,
+      "regra": ""
+    },
+    {
+      "id": 159,
+      "ean": "7891000361214",
+      "nome": "Chocolate ao Leite Classic Nestlé 150g",
+      "comum": 14.49,
+      "cartao": 14.49,
+      "regra": ""
+    },
+    {
+      "id": 160,
+      "ean": "7891008124477",
+      "nome": "Chocolate Branco Garoto Biscoito Tablete 80g",
+      "comum": 7.99,
+      "cartao": 7.99,
+      "regra": ""
+    },
+    {
+      "id": 161,
+      "ean": "7891008124170",
+      "nome": "Chocolate Garoto Castanha de Caju Tablete 80g",
+      "comum": 7.99,
+      "cartao": 7.99,
+      "regra": ""
+    },
+    {
+      "id": 162,
+      "ean": "7891000462300",
+      "nome": "Chocolate Chokito 32g",
+      "comum": 3.75,
+      "cartao": 3.75,
+      "regra": ""
+    },
+    {
+      "id": 163,
+      "ean": "7891000092606",
+      "nome": "Chocolate Lollo 28g",
+      "comum": 3.69,
+      "cartao": 3.69,
+      "regra": ""
+    },
+    {
+      "id": 164,
+      "ean": "7891000092613",
+      "nome": "Chocolate LOLLO 30x28g",
+      "comum": 110.7,
+      "cartao": 110.7,
+      "regra": ""
+    },
+    {
+      "id": 165,
+      "ean": "7891000460207",
+      "nome": "Chocolate Prestígio 33g",
+      "comum": 4.15,
+      "cartao": 4.15,
+      "regra": ""
+    },
+    {
+      "id": 166,
+      "ean": "7896019607636",
+      "nome": "Chocolate Amandita 200g",
+      "comum": 25.9,
+      "cartao": 25.9,
+      "regra": ""
+    },
+    {
+      "id": 167,
+      "ean": "7896423470994",
+      "nome": "Chocolate Twix Caramelo - 40g",
+      "comum": 5.29,
+      "cartao": 5.29,
+      "regra": ""
+    },
+    {
+      "id": 168,
+      "ean": "7891008040029",
+      "nome": "Chocolate em Pó Garoto 200g",
+      "comum": 33.69,
+      "cartao": 33.69,
+      "regra": ""
+    },
+    {
+      "id": 169,
+      "ean": "7896423438727",
+      "nome": "Chocolate M&MS Ao Leite 40g",
+      "comum": 5.69,
+      "cartao": 5.69,
+      "regra": ""
+    },
+    {
+      "id": 170,
+      "ean": "7622202256721",
+      "nome": "Chocolate branco Laka 28g",
+      "comum": 4.35,
+      "cartao": 4.35,
+      "regra": ""
+    },
+    {
+      "id": 171,
+      "ean": "7891048000106",
+      "nome": "Chocolate em Pó 70% Cacau Dr. Oetker 200g",
+      "comum": 28.49,
+      "cartao": 28.49,
+      "regra": ""
+    },
+    {
+      "id": 172,
+      "ean": "78912359",
+      "nome": "Chocolate ao Leite Garoto Baton 16g",
+      "comum": 1.99,
+      "cartao": 1.99,
+      "regra": ""
+    },
+    {
+      "id": 173,
+      "ean": "7622202256691",
+      "nome": "Chocolate Lacta ao leite Diamante Negro 28g",
+      "comum": 4.35,
+      "cartao": 4.35,
+      "regra": ""
+    },
+    {
+      "id": 174,
+      "ean": "7622210674050",
+      "nome": "Chocolate Lacta ao leite Diamante Negro 80g",
+      "comum": 6.49,
+      "cartao": 6.49,
+      "regra": ""
+    },
+    {
+      "id": 175,
+      "ean": "7891000364567",
+      "nome": "Chocolate em Pó 32% Cacau Dois Frades® 1,01kg",
+      "comum": 61.9,
+      "cartao": 61.9,
+      "regra": ""
+    },
+    {
+      "id": 176,
+      "ean": "7891000248829",
+      "nome": "Chocolate KITKAT 4 Fingers Dark 41,5g",
+      "comum": 4.79,
+      "cartao": 4.79,
+      "regra": ""
+    },
+    {
+      "id": 177,
+      "ean": "7896058505559",
+      "nome": "Chocolate Confeitado Mini Disquete Dori 500g",
+      "comum": 44.39,
+      "cartao": 44.39,
+      "regra": ""
+    },
+    {
+      "id": 178,
+      "ean": "7622210674432",
+      "nome": "Chocolate Lacta Amaro 40% Cacau Barra 80g",
+      "comum": 6.49,
+      "cartao": 6.49,
+      "regra": ""
+    },
+    {
+      "id": 179,
+      "ean": "7894900010015",
+      "nome": "Refrigerante Coca-Cola 350ml",
+      "comum": 3.69,
+      "cartao": 3.69,
+      "regra": ""
+    },
+    {
+      "id": 180,
+      "ean": "7892840800000",
+      "nome": "Refrigerante Pepsi 2L",
+      "comum": 9.09,
+      "cartao": 9.09,
+      "regra": ""
+    },
+    {
+      "id": 181,
+      "ean": "7894900011715",
+      "nome": "Refrigerante Coca-Cola 1L",
+      "comum": 7.29,
+      "cartao": 7.29,
+      "regra": ""
+    },
+    {
+      "id": 182,
+      "ean": "7894900918397",
+      "nome": "Refrigerante Guaraná Kuat 2L",
+      "comum": 7.49,
+      "cartao": 7.49,
+      "regra": ""
+    },
+    {
+      "id": 183,
+      "ean": "7896718700164",
+      "nome": "Refrigerante Limão Frutuba 2L",
+      "comum": 4.19,
+      "cartao": 4.19,
+      "regra": ""
+    },
+    {
+      "id": 184,
+      "ean": "7896718701437",
+      "nome": "Refrigerante Tubaína Frutuba 2L",
+      "comum": 4.19,
+      "cartao": 4.19,
+      "regra": ""
+    },
+    {
+      "id": 185,
+      "ean": "7896462300153",
+      "nome": "Refrigerante de Cola Dolly 2L",
+      "comum": 4.49,
+      "cartao": 4.49,
+      "regra": ""
+    },
+    {
+      "id": 186,
+      "ean": "78937765",
+      "nome": "Refrigerante Fanta Guaraná 200ml",
+      "comum": 1.39,
+      "cartao": 1.39,
+      "regra": ""
+    },
+    {
+      "id": 187,
+      "ean": "7894900051513",
+      "nome": "Refrigerante Sabor Uva Fanta 2L",
+      "comum": 10.59,
+      "cartao": 10.59,
+      "regra": ""
+    },
+    {
+      "id": 188,
+      "ean": "7896718700140",
+      "nome": "Refrigerante Guaraná Frutuba 2L",
+      "comum": 4.19,
+      "cartao": 4.19,
+      "regra": ""
+    },
+    {
+      "id": 189,
+      "ean": "7892840800567",
+      "nome": "Refrigerante Cola Pepsi 200ml",
+      "comum": 1.89,
+      "cartao": 1.89,
+      "regra": ""
+    },
+    {
+      "id": 190,
+      "ean": "78912892",
+      "nome": "Refrigerante Coca-Cola Zero 250ml",
+      "comum": 4.79,
+      "cartao": 4.79,
+      "regra": ""
+    },
+    {
+      "id": 191,
+      "ean": "7896462300139",
+      "nome": "Refrigerante Sabor Limão Dolly 2L",
+      "comum": 4.49,
+      "cartao": 4.49,
+      "regra": ""
+    },
+    {
+      "id": 192,
+      "ean": "7896462302485",
+      "nome": "Refrigerante Sabor Maça Dolly 2L",
+      "comum": 4.49,
+      "cartao": 4.49,
+      "regra": ""
+    },
+    {
+      "id": 193,
+      "ean": "7896462300115",
+      "nome": "Refrigerante Sabor Guaraná Dolly 2L",
+      "comum": 4.49,
+      "cartao": 4.49,
+      "regra": ""
+    },
+    {
+      "id": 194,
+      "ean": "7894900050394",
+      "nome": "Refrigerante Sabor Uva Fanta 220ml",
+      "comum": 3.09,
+      "cartao": 3.09,
+      "regra": ""
+    },
+    {
+      "id": 195,
+      "ean": "7896437900012",
+      "nome": "Refrigerante Guaraná Cruzeiro 2L",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 196,
+      "ean": "7894900053630",
+      "nome": "Refrigerante Sabor Uva Fanta 600ml",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 197,
+      "ean": "7896462300252",
+      "nome": "Refrigerante Dolly Laranja 350ml",
+      "comum": 1.59,
+      "cartao": 1.59,
+      "regra": ""
+    },
+    {
+      "id": 198,
+      "ean": "7892840800079",
+      "nome": "Refrigerante Pepsi 350ml",
+      "comum": 3.69,
+      "cartao": 3.69,
+      "regra": ""
+    },
+    {
+      "id": 199,
+      "ean": "7891991295086",
+      "nome": "Cerveja Pilsen Original Lata 269ml",
+      "comum": 3.89,
+      "cartao": 3.89,
+      "regra": ""
+    },
+    {
+      "id": 200,
+      "ean": "7897395099299",
+      "nome": "Cerveja Puro Malte Petra 269ml",
+      "comum": 2.99,
+      "cartao": 2.99,
+      "regra": ""
+    },
+    {
+      "id": 201,
+      "ean": "7896388010556",
+      "nome": "Cerveja Cerpa Export 350ml",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 202,
+      "ean": "7891149210503",
+      "nome": "Cerveja Escura Caracu 350ml",
+      "comum": 5.89,
+      "cartao": 5.89,
+      "regra": ""
+    },
+    {
+      "id": 203,
+      "ean": "7896045506934",
+      "nome": "Cerveja Amstel Lata 350ml",
+      "comum": 3.99,
+      "cartao": 3.99,
+      "regra": ""
+    },
+    {
+      "id": 204,
+      "ean": "7896045506590",
+      "nome": "Cerveja Heineken Lata 269ml",
+      "comum": 4.59,
+      "cartao": 4.59,
+      "regra": ""
+    },
+    {
+      "id": 205,
+      "ean": "7896045505319",
+      "nome": "Cerveja Amstel Lager Lata 269ml",
+      "comum": 3.29,
+      "cartao": 3.29,
+      "regra": ""
+    },
+    {
+      "id": 206,
+      "ean": "7898694490411",
+      "nome": "Cerveja Witbier Praya 600ml",
+      "comum": 15.99,
+      "cartao": 15.99,
+      "regra": ""
+    },
+    {
+      "id": 207,
+      "ean": "7897395099329",
+      "nome": "Cerveja Puro Malte Petra 350ml",
+      "comum": 4.19,
+      "cartao": 4.19,
+      "regra": ""
+    },
+    {
+      "id": 208,
+      "ean": "7891149103102",
+      "nome": "Cerveja Pilsen Skol 269ml",
+      "comum": 3.19,
+      "cartao": 3.19,
+      "regra": ""
+    },
+    {
+      "id": 209,
+      "ean": "7891991015493",
+      "nome": "Cerveja Pilsen Original 350ml",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 210,
+      "ean": "7891991295055",
+      "nome": "Cerveja Corona Extra 350ml Lata",
+      "comum": 6.79,
+      "cartao": 6.79,
+      "regra": ""
+    },
+    {
+      "id": 211,
+      "ean": "7896045506682",
+      "nome": "Cerveja Lagunitas IPA Lata 350ML",
+      "comum": 8.99,
+      "cartao": 8.99,
+      "regra": ""
+    },
+    {
+      "id": 212,
+      "ean": "7891149200504",
+      "nome": "Cerveja Pilsen Skol 350ml",
+      "comum": 3.79,
+      "cartao": 3.79,
+      "regra": ""
+    },
+    {
+      "id": 213,
+      "ean": "7891149104123",
+      "nome": "Cerveja Pilsen Skol 550ml",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 214,
+      "ean": "7898230716654",
+      "nome": "Cerveja Baden Baden IPA Lata 350ml",
+      "comum": 6.89,
+      "cartao": 6.89,
+      "regra": ""
+    },
+    {
+      "id": 215,
+      "ean": "7898230716630",
+      "nome": "Cerveja Baden Baden Witbier Lata 350ml",
+      "comum": 6.89,
+      "cartao": 6.89,
+      "regra": ""
+    },
+    {
+      "id": 216,
+      "ean": "7891991306324",
+      "nome": "Cerveja Corona Extra 269ml Lata",
+      "comum": 5.49,
+      "cartao": 5.49,
+      "regra": ""
+    },
+    {
+      "id": 217,
+      "ean": "7891149108718",
+      "nome": "Cerveja Corona Extra 330ml Long Neck",
+      "comum": 8.69,
+      "cartao": 8.69,
+      "regra": ""
+    },
+    {
+      "id": 218,
+      "ean": "7898605254132",
+      "nome": "Cerveja Colorado Appia Sleek 350ml",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 219,
+      "ean": "7896055501103",
+      "nome": "Sabão Assolan em Pasta Neutro Mais Brilho 500g",
+      "comum": 8.59,
+      "cartao": 8.59,
+      "regra": ""
+    },
+    {
+      "id": 220,
+      "ean": "7898262350758",
+      "nome": "Sabão em Pasta Urca 500g",
+      "comum": 8.85,
+      "cartao": 8.85,
+      "regra": ""
+    },
+    {
+      "id": 221,
+      "ean": "7896056407091",
+      "nome": "Sabão em Pedra Coco UFE 90g",
+      "comum": 14.39,
+      "cartao": 14.39,
+      "regra": ""
+    },
+    {
+      "id": 222,
+      "ean": "7896060401467",
+      "nome": "Sabão em Pasta Ufe Coco 500g",
+      "comum": 15.29,
+      "cartao": 15.29,
+      "regra": ""
+    },
+    {
+      "id": 223,
+      "ean": "7896056407121",
+      "nome": "Sabão em Pedra Coco Urca 180g",
+      "comum": 3.09,
+      "cartao": 3.09,
+      "regra": ""
+    },
+    {
+      "id": 224,
+      "ean": "7896098905951",
+      "nome": "Sabão em Barra Ypê Fresh 800g",
+      "comum": 15.19,
+      "cartao": 15.19,
+      "regra": ""
+    },
+    {
+      "id": 225,
+      "ean": "7896098905906",
+      "nome": "Sabão em Barra Ypê Neutro 800g",
+      "comum": 14.59,
+      "cartao": 14.59,
+      "regra": ""
+    },
+    {
+      "id": 226,
+      "ean": "7896098905913",
+      "nome": "Sabão em Barra Ypê Neutro 160g",
+      "comum": 2.99,
+      "cartao": 2.99,
+      "regra": ""
+    },
+    {
+      "id": 227,
+      "ean": "7896098905982",
+      "nome": "Sabão em Barra Ypê Coco e Aveia 800g",
+      "comum": 17.99,
+      "cartao": 17.99,
+      "regra": ""
+    },
+    {
+      "id": 228,
+      "ean": "7896098905937",
+      "nome": "Sabão em Barra Ypê Multiativo 800g",
+      "comum": 15.19,
+      "cartao": 15.19,
+      "regra": ""
+    },
+    {
+      "id": 229,
+      "ean": "7896056407107",
+      "nome": "Sabão em Pedra Coco Urca 180g 5 Unidades",
+      "comum": 13.9,
+      "cartao": 13.9,
+      "regra": ""
+    },
+    {
+      "id": 230,
+      "ean": "7908324402865",
+      "nome": "Sabão Barra Glicerinado Minuano 160g 5 Unidades",
+      "comum": 11.5,
+      "cartao": 11.5,
+      "regra": ""
+    },
+    {
+      "id": 231,
+      "ean": "7908324402841",
+      "nome": "Sabão Barra Glicerinado Multiuso Neutro Minuano Pacote 180g",
+      "comum": 3.05,
+      "cartao": 3.05,
+      "regra": ""
+    },
+    {
+      "id": 232,
+      "ean": "7896098905968",
+      "nome": "Sabão em Barra Ypê Aloe Vera 800g",
+      "comum": 15.19,
+      "cartao": 15.19,
+      "regra": ""
+    },
+    {
+      "id": 233,
+      "ean": "7898132847296",
+      "nome": "Sabão em Pó ACE - Caixa 1,6kg",
+      "comum": 15.49,
+      "cartao": 15.49,
+      "regra": ""
+    },
+    {
+      "id": 234,
+      "ean": "7896098905999",
+      "nome": "Sabão em Barra Ypê Coco e Aveia 160g",
+      "comum": 4.29,
+      "cartao": 4.29,
+      "regra": ""
+    },
+    {
+      "id": 235,
+      "ean": "7896098909874",
+      "nome": "Sabão em Pó Tixan Ypê Primavera Sachê 4Kg",
+      "comum": 36.79,
+      "cartao": 36.79,
+      "regra": ""
+    },
+    {
+      "id": 236,
+      "ean": "7896098909768",
+      "nome": "Sabão em Pó Tixan Ypê Primavera 1,6Kg",
+      "comum": 18.59,
+      "cartao": 18.59,
+      "regra": ""
+    },
+    {
+      "id": 237,
+      "ean": "7896098909775",
+      "nome": "Sabão em Pó Tixan Ypê Maciez 1,6Kg",
+      "comum": 18.59,
+      "cartao": 18.59,
+      "regra": ""
+    },
+    {
+      "id": 238,
+      "ean": "7896098909812",
+      "nome": "Sabão em Pó Tixan Ypê Maciez Sachê 800g",
+      "comum": 10.09,
+      "cartao": 10.09,
+      "regra": ""
+    },
+    {
+      "id": 239,
+      "ean": "7896098903070",
+      "nome": "Amaciante Ypê Pro 7L",
+      "comum": 32.99,
+      "cartao": 32.99,
+      "regra": ""
+    },
+    {
+      "id": 240,
+      "ean": "7896056402768",
+      "nome": "Amaciante Urca Floral 5l",
+      "comum": 15.89,
+      "cartao": 15.89,
+      "regra": ""
+    },
+    {
+      "id": 241,
+      "ean": "7896075990734",
+      "nome": "Amaciante Baby Soft Azul 5L",
+      "comum": 18.89,
+      "cartao": 18.89,
+      "regra": ""
+    },
+    {
+      "id": 242,
+      "ean": "7898497685106",
+      "nome": "Amaciante Select Maciez 5L",
+      "comum": 19.99,
+      "cartao": 19.99,
+      "regra": ""
+    },
+    {
+      "id": 243,
+      "ean": "7896075990727",
+      "nome": "Amaciante Baby Soft Azul 2L",
+      "comum": 8.69,
+      "cartao": 8.69,
+      "regra": ""
+    },
+    {
+      "id": 244,
+      "ean": "7896056404700",
+      "nome": "Amaciante Urca Brisa Da Primavera 2L",
+      "comum": 7.69,
+      "cartao": 7.69,
+      "regra": ""
+    },
+    {
+      "id": 245,
+      "ean": "7896098903032",
+      "nome": "Amaciante Ypê Ultra Intenso 2 Litros",
+      "comum": 10.69,
+      "cartao": 10.69,
+      "regra": ""
+    },
+    {
+      "id": 246,
+      "ean": "7896075910459",
+      "nome": "Amaciante Toque Envolvente Baby Soft 2L",
+      "comum": 8.69,
+      "cartao": 8.69,
+      "regra": ""
+    },
+    {
+      "id": 247,
+      "ean": "7896524723159",
+      "nome": "Amaciante Suprema Alegres Encantos 5l",
+      "comum": 13.19,
+      "cartao": 13.19,
+      "regra": ""
+    },
+    {
+      "id": 248,
+      "ean": "7896098905401",
+      "nome": "Amaciante Ypê Ultra Aconchego 5 Litros",
+      "comum": 18.89,
+      "cartao": 18.89,
+      "regra": ""
+    },
+    {
+      "id": 249,
+      "ean": "7896098905463",
+      "nome": "Amaciante Ypê Ultra Intenso 5 Litros",
+      "comum": 18.89,
+      "cartao": 18.89,
+      "regra": ""
+    },
+    {
+      "id": 250,
+      "ean": "7896098901571",
+      "nome": "Amaciante Concentrado Ypê Delicado 1,5L",
+      "comum": 25.99,
+      "cartao": 25.99,
+      "regra": ""
+    },
+    {
+      "id": 251,
+      "ean": "7896098903049",
+      "nome": "Amaciante Concentrado Ypê Delicado 500ml",
+      "comum": 9.69,
+      "cartao": 9.69,
+      "regra": ""
+    },
+    {
+      "id": 252,
+      "ean": "7896098902400",
+      "nome": "Amaciante Ypê Ultra Aconchego 2 Litros",
+      "comum": 10.69,
+      "cartao": 10.69,
+      "regra": ""
+    },
+    {
+      "id": 253,
+      "ean": "7896056401136",
+      "nome": "Amaciante Urca 2L com perfume floral fresco",
+      "comum": 7.69,
+      "cartao": 7.69,
+      "regra": ""
+    },
+    {
+      "id": 254,
+      "ean": "7506339389883",
+      "nome": "Amaciante Concentrado Lírios do Campo Downy 1,5L",
+      "comum": 16.49,
+      "cartao": 16.49,
+      "regra": ""
+    },
+    {
+      "id": 255,
+      "ean": "7500435259569",
+      "nome": "Amaciante Concentrado Downy Verão Tropical - 3L",
+      "comum": 59.9,
+      "cartao": 59.9,
+      "regra": ""
+    },
+    {
+      "id": 256,
+      "ean": "7896098902424",
+      "nome": "Amaciante Ypê Ultra Frescor Das Flores 2 Litros",
+      "comum": 10.69,
+      "cartao": 10.69,
+      "regra": ""
+    },
+    {
+      "id": 257,
+      "ean": "7891150065178",
+      "nome": "Amaciante Concentrado Comfort Frescor Intenso 1,5 L",
+      "comum": 25.89,
+      "cartao": 25.89,
+      "regra": ""
+    },
+    {
+      "id": 258,
+      "ean": "7506195143858",
+      "nome": "Amaciante Concentrado Lírios do Campo Downy 500ml",
+      "comum": 11.59,
+      "cartao": 11.59,
+      "regra": ""
+    },
+    {
+      "id": 259,
+      "ean": "7908782500226",
+      "nome": "Papel Higiênico Supra 20m 24 Unidades",
+      "comum": 42.99,
+      "cartao": 42.99,
+      "regra": ""
+    },
+    {
+      "id": 260,
+      "ean": "7898962794265",
+      "nome": "Papel Higiênico Folha Tripla Neutro Mimmo 20m Leve 12 Pague 11 Unidades",
+      "comum": 21.39,
+      "cartao": 21.39,
+      "regra": ""
+    },
+    {
+      "id": 261,
+      "ean": "7896914011583",
+      "nome": "Papel Higiênico Folha Tripla Deluxe Cotton 20m Leve 12 Pague 11 Unidades",
+      "comum": 19.99,
+      "cartao": 19.99,
+      "regra": ""
+    },
+    {
+      "id": 262,
+      "ean": "7908782500189",
+      "nome": "Papel Higiênico Supra 30m 24 Unidades",
+      "comum": 41.99,
+      "cartao": 41.99,
+      "regra": ""
+    },
+    {
+      "id": 263,
+      "ean": "7908782500004",
+      "nome": "Papel Higiênico Folha Dupla Familiar 30m Leve 12 Pague 11",
+      "comum": 18.99,
+      "cartao": 18.99,
+      "regra": ""
+    },
+    {
+      "id": 264,
+      "ean": "7908782500035",
+      "nome": "Papel Higiênico Folha Dupla Familiar 30m Leve 24 Pague 22",
+      "comum": 35.99,
+      "cartao": 35.99,
+      "regra": ""
+    },
+    {
+      "id": 265,
+      "ean": "7898962794067",
+      "nome": "Papel Higiênico Max Pure Folha Dupla Leve 12 Pague 11 30M",
+      "comum": 20.9,
+      "cartao": 20.9,
+      "regra": ""
+    },
+    {
+      "id": 266,
+      "ean": "7896061915307",
+      "nome": "Papel Higiênico Folha Simples Sublime 30m Leve 12 Pague 11",
+      "comum": 12.19,
+      "cartao": 12.19,
+      "regra": ""
+    },
+    {
+      "id": 267,
+      "ean": "7896914002147",
+      "nome": "Papel Higiênico Folha Dupla Deluxe Cotton 30M Leve 16 Pague 15",
+      "comum": 28.99,
+      "cartao": 28.99,
+      "regra": ""
+    },
+    {
+      "id": 268,
+      "ean": "7896104992197",
+      "nome": "Papel Higiênico Neutro Folha Dupla Atualle 20m 12 Unidades",
+      "comum": 13.99,
+      "cartao": 13.99,
+      "regra": ""
+    },
+    {
+      "id": 269,
+      "ean": "7896104992371",
+      "nome": "Papel Higiênico Neutro Folha Dupla Mili Bianco 30m 12 Unidades",
+      "comum": 16.99,
+      "cartao": 16.99,
+      "regra": ""
+    },
+    {
+      "id": 270,
+      "ean": "7896104991909",
+      "nome": "Papel higiênico Atualle 40un",
+      "comum": 44.99,
+      "cartao": 44.99,
+      "regra": ""
+    },
+    {
+      "id": 271,
+      "ean": "7891172433078",
+      "nome": "Papel Higiênico Neve Toque de Seda Folha Dupla Leve 24 Pague 21 30M",
+      "comum": 49.99,
+      "cartao": 49.99,
+      "regra": ""
+    },
+    {
+      "id": 272,
+      "ean": "7898497686394",
+      "nome": "Papel Higiênico Folha Simples Select 30m 4un",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 273,
+      "ean": "7898460932213",
+      "nome": "Papel Higiênico Folha Dupla Select 30m Leve 12 Pague 11",
+      "comum": 17.99,
+      "cartao": 17.99,
+      "regra": ""
+    },
+    {
+      "id": 274,
+      "ean": "7898460934125",
+      "nome": "Papel Higiênico Folha Dupla Select 30m Leve 24 Pague 22",
+      "comum": 32.99,
+      "cartao": 32.99,
+      "regra": ""
+    },
+    {
+      "id": 275,
+      "ean": "7908782500271",
+      "nome": "Papel Higiênico Supra Folha Dupla 12 Unidades - 20 Metros",
+      "comum": 22.99,
+      "cartao": 22.99,
+      "regra": ""
+    },
+    {
+      "id": 276,
+      "ean": "7898497685984",
+      "nome": "Papel Higiênico Neutro Select Folha Dupla Leve 16 Pague 15 unidades",
+      "comum": 23.39,
+      "cartao": 23.39,
+      "regra": ""
+    },
+    {
+      "id": 277,
+      "ean": "7908782500165",
+      "nome": "Papel Higiênico Supra 30m 12 Unidades",
+      "comum": 21.99,
+      "cartao": 21.99,
+      "regra": ""
+    },
+    {
+      "id": 278,
+      "ean": "7891172433085",
+      "nome": "Papel Higienico Neve Supreme Folha Tripla Leve 24 Pague 21 20M",
+      "comum": 49.99,
+      "cartao": 49.99,
+      "regra": ""
+    },
+    {
+      "id": 279,
+      "ean": "7890000271066",
+      "nome": "Frango Inteiro Congelado 3kg",
+      "comum": 29.97,
+      "cartao": 29.97,
+      "regra": ""
+    },
+    {
+      "id": 280,
+      "ean": "7896419701637",
+      "nome": "Frango a Passarinho Congelado Lar 1Kg",
+      "comum": 11.9,
+      "cartao": 11.9,
+      "regra": ""
+    },
+    {
+      "id": 281,
+      "ean": "7896419728931",
+      "nome": "Frango a Passarinho Temperado Lar 700g",
+      "comum": 8.9,
+      "cartao": 8.9,
+      "regra": ""
+    },
+    {
+      "id": 282,
+      "ean": "7893000488526",
+      "nome": "Frango à Passarinho Congelado Sadia Zip 1kg",
+      "comum": 13.9,
+      "cartao": 13.9,
+      "regra": ""
+    },
+    {
+      "id": 283,
+      "ean": "7891164016371",
+      "nome": "Frango à Passarinho Congelado Aurora 1kg",
+      "comum": 14.9,
+      "cartao": 14.9,
+      "regra": ""
+    },
+    {
+      "id": 284,
+      "ean": "7891164016388",
+      "nome": "Frango à Passarinho Congelado Aurora IQF 3kg",
+      "comum": 38.9,
+      "cartao": 38.9,
+      "regra": ""
+    },
+    {
+      "id": 285,
+      "ean": "7891515521905",
+      "nome": "Frango Desfiado Temperado Cozido Sadia 400G",
+      "comum": 20.9,
+      "cartao": 20.9,
+      "regra": ""
+    },
+    {
+      "id": 286,
+      "ean": "7890000051538",
+      "nome": "Frango inteiro caipira Nhô Bento Seara 2,2kg",
+      "comum": 37.38,
+      "cartao": 37.38,
+      "regra": ""
+    },
+    {
+      "id": 287,
+      "ean": "7890000015080",
+      "nome": "Frango Inteiro com Miúdos Seara 2,6kg",
+      "comum": 28.57,
+      "cartao": 28.57,
+      "regra": ""
+    },
+    {
+      "id": 288,
+      "ean": "7894904769889",
+      "nome": "Petisco de Frango Congelado Temperado Frango de Padaria Seara 1kg",
+      "comum": 14.9,
+      "cartao": 14.9,
+      "regra": ""
+    },
+    {
+      "id": 289,
+      "ean": "7898965028091",
+      "nome": "Espeto Coração de Frango Congelado TC 600g",
+      "comum": 38.9,
+      "cartao": 38.9,
+      "regra": ""
+    },
+    {
+      "id": 290,
+      "ean": "7896419716280",
+      "nome": "Filé de Peito de Frango Congelado Lar 1Kg",
+      "comum": 20.9,
+      "cartao": 20.9,
+      "regra": ""
+    },
+    {
+      "id": 291,
+      "ean": "7890000271752",
+      "nome": "Peito de Frango com Osso Congelado 1,5kg",
+      "comum": 17.98,
+      "cartao": 17.98,
+      "regra": ""
+    },
+    {
+      "id": 292,
+      "ean": "7893000005945",
+      "nome": "Filé de Peito de Frango Congelado Sadia Zip 1kg",
+      "comum": 19.9,
+      "cartao": 19.9,
+      "regra": ""
+    },
+    {
+      "id": 293,
+      "ean": "7890000271998",
+      "nome": "Asa de Frango Congelada 1kg",
+      "comum": 16.15,
+      "cartao": 16.15,
+      "regra": ""
+    },
+    {
+      "id": 294,
+      "ean": "7890000111362",
+      "nome": "Coxa com Sobrecoxa de Frango Congelado 500g",
+      "comum": 4.25,
+      "cartao": 4.25,
+      "regra": ""
+    },
+    {
+      "id": 295,
+      "ean": "7891515474133",
+      "nome": "Steak frango recheado Perdigão 100g",
+      "comum": 5.09,
+      "cartao": 5.09,
+      "regra": ""
+    },
+    {
+      "id": 296,
+      "ean": "7893000488793",
+      "nome": "Coxa e Sobrecoxa de Frango à Passarinho Congelada Sadia Zip 1kg",
+      "comum": 18.9,
+      "cartao": 18.9,
+      "regra": ""
+    },
+    {
+      "id": 297,
+      "ean": "7890000618106",
+      "nome": "Frango Inteiro Resfriado 2,8kg",
+      "comum": 30.77,
+      "cartao": 30.77,
+      "regra": ""
+    },
+    {
+      "id": 298,
+      "ean": "7890022912008",
+      "nome": "Frango à Passarinho temperado resfriado bandeja 600g",
+      "comum": 6.59,
+      "cartao": 6.59,
+      "regra": ""
+    },
+    {
+      "id": 299,
+      "ean": "7899567209536",
+      "nome": "Carne moída congelada Friboi 500g",
+      "comum": 16.99,
+      "cartao": 16.99,
+      "regra": ""
+    },
+    {
+      "id": 300,
+      "ean": "7898600721943",
+      "nome": "Carne Moída Bovina Congelada Brasa 500g",
+      "comum": 15.9,
+      "cartao": 15.9,
+      "regra": ""
+    },
+    {
+      "id": 301,
+      "ean": "7898908236224",
+      "nome": "Carne Moída Bovina Congelada Chuletão 1kg",
+      "comum": 19.9,
+      "cartao": 19.9,
+      "regra": ""
+    },
+    {
+      "id": 302,
+      "ean": "7890023744004",
+      "nome": "Carne Bovina Resfriada Rabo Bandeja 600g",
+      "comum": 26.21,
+      "cartao": 26.21,
+      "regra": ""
+    },
+    {
+      "id": 303,
+      "ean": "7896716312970",
+      "nome": "Carne Suína Moída Congelada Pamplona 500g",
+      "comum": 9.99,
+      "cartao": 9.99,
+      "regra": ""
+    },
+    {
+      "id": 304,
+      "ean": "7890022700001",
+      "nome": "Carne Bovina Resfriada Fígado fatiado Bandeja 400g",
+      "comum": 8.16,
+      "cartao": 8.16,
+      "regra": ""
+    },
+    {
+      "id": 305,
+      "ean": "7890022705006",
+      "nome": "Carne Bovina Resfriada Bucho em Tiras Bandeja 400g",
+      "comum": 10.56,
+      "cartao": 10.56,
+      "regra": ""
+    },
+    {
+      "id": 306,
+      "ean": "7890026100005",
+      "nome": "Carne Bovina Resfriada Mocotó Fatiado Bandeja 400g",
+      "comum": 6.72,
+      "cartao": 6.72,
+      "regra": ""
+    },
+    {
+      "id": 307,
+      "ean": "7890021207709",
+      "nome": "Carne Bovina Resfriada File Mignon Pedaço Bandeja 1,01kg",
+      "comum": 134.02,
+      "cartao": 134.02,
+      "regra": ""
+    },
+    {
+      "id": 308,
+      "ean": "7898908236019",
+      "nome": "Carne Moída Bovina Congelada Chuletão 500g",
+      "comum": 8.89,
+      "cartao": 8.89,
+      "regra": ""
+    },
+    {
+      "id": 309,
+      "ean": "7898937000674",
+      "nome": "Charque Traseiro Vilheto - Carne Seca 500g",
+      "comum": 23.09,
+      "cartao": 23.09,
+      "regra": ""
+    },
+    {
+      "id": 310,
+      "ean": "8670009952604",
+      "nome": "Charque Traseiro Vilheto 500g",
+      "comum": 25.29,
+      "cartao": 25.29,
+      "regra": ""
+    },
+    {
+      "id": 311,
+      "ean": "2789000115485",
+      "nome": "Coxão Mole Bovino em Bifes 500g",
+      "comum": 26.39,
+      "cartao": 26.39,
+      "regra": ""
+    },
+    {
+      "id": 312,
+      "ean": "7892644000002",
+      "nome": "Contrafilé Bovino Resfriado Peça 4kg",
+      "comum": 231.96,
+      "cartao": 231.96,
+      "regra": ""
+    },
+    {
+      "id": 313,
+      "ean": "7890000020183",
+      "nome": "Costela Bovina Minga Congelada Bandeja 1kg",
+      "comum": 29.38,
+      "cartao": 29.38,
+      "regra": ""
+    },
+    {
+      "id": 314,
+      "ean": "7890000015431",
+      "nome": "Contrafilé Bovino em Bifes Resfriado Bandeja 400g",
+      "comum": 25.52,
+      "cartao": 25.52,
+      "regra": ""
+    },
+    {
+      "id": 315,
+      "ean": "7890000121125",
+      "nome": "Alcatra Suína Temperada Pamplona",
+      "comum": 31.99,
+      "cartao": 31.99,
+      "regra": ""
+    },
+    {
+      "id": 316,
+      "ean": "7898965028015",
+      "nome": "Espeto congelado Bovino TC 600g",
+      "comum": 38.9,
+      "cartao": 38.9,
+      "regra": ""
+    },
+    {
+      "id": 317,
+      "ean": "7890000010054",
+      "nome": "Acém Bovino Resfriado Pedaço 1kg",
+      "comum": 44.43,
+      "cartao": 44.43,
+      "regra": ""
+    },
+    {
+      "id": 318,
+      "ean": "8670009750620",
+      "nome": "Charque Dianteiro Vilheto 1kg",
+      "comum": 45.09,
+      "cartao": 45.09,
+      "regra": ""
+    },
+    {
+      "id": 319,
+      "ean": "7896523300016",
+      "nome": "Queijo Ralado Italac 40g",
+      "comum": 4.99,
+      "cartao": 4.99,
+      "regra": ""
+    },
+    {
+      "id": 320,
+      "ean": "7890000035484",
+      "nome": "Queijo Prato Apolo Peça 4,2kg",
+      "comum": 251.54,
+      "cartao": 251.54,
+      "regra": ""
+    },
+    {
+      "id": 321,
+      "ean": "7898598750536",
+      "nome": "Queijo Reino Fracionado Quatá 170g",
+      "comum": 23.9,
+      "cartao": 23.9,
+      "regra": ""
+    },
+    {
+      "id": 322,
+      "ean": "7890000147798",
+      "nome": "Queijo Prato Peça Ipanema 3,2kg",
+      "comum": 159.65,
+      "cartao": 159.65,
+      "regra": ""
+    },
+    {
+      "id": 323,
+      "ean": "7890000123754",
+      "nome": "Queijo Gorgonzola Ipanema 190g",
+      "comum": 18.98,
+      "cartao": 18.98,
+      "regra": ""
+    },
+    {
+      "id": 324,
+      "ean": "7890000123747",
+      "nome": "Queijo Emmental Tirolez 190g",
+      "comum": 30.38,
+      "cartao": 30.38,
+      "regra": ""
+    },
+    {
+      "id": 325,
+      "ean": "7890000122115",
+      "nome": "Queijo Prato Pedaço Frimesa 500g",
+      "comum": 33.45,
+      "cartao": 33.45,
+      "regra": ""
+    },
+    {
+      "id": 326,
+      "ean": "7890000069847",
+      "nome": "Queijo Coalho Barra Ipanema 1kg",
+      "comum": 63.11,
+      "cartao": 63.11,
+      "regra": ""
+    },
+    {
+      "id": 327,
+      "ean": "7890000036603",
+      "nome": "Queijo Prato Apolo Fatiado 200g",
+      "comum": 9.58,
+      "cartao": 9.58,
+      "regra": ""
+    },
+    {
+      "id": 328,
+      "ean": "7896030518287",
+      "nome": "Queijo Camembert Tirolez 125g",
+      "comum": 21.5,
+      "cartao": 21.5,
+      "regra": ""
+    },
+    {
+      "id": 329,
+      "ean": "8670001647126",
+      "nome": "Queijo Parmesão Ralado Vigor 50g",
+      "comum": 6.69,
+      "cartao": 6.69,
+      "regra": ""
+    },
+    {
+      "id": 330,
+      "ean": "7898598750543",
+      "nome": "Queijo Gouda Fracionado Quata 170g",
+      "comum": 25.9,
+      "cartao": 25.9,
+      "regra": ""
+    },
+    {
+      "id": 331,
+      "ean": "7898598750574",
+      "nome": "Queijo Gruyère Fracionado Quatá 170g",
+      "comum": 26.5,
+      "cartao": 26.5,
+      "regra": ""
+    },
+    {
+      "id": 332,
+      "ean": "7890000052177",
+      "nome": "Queijo Prato Scala Fatiado 200g",
+      "comum": 12.9,
+      "cartao": 12.9,
+      "regra": ""
+    },
+    {
+      "id": 333,
+      "ean": "7898460933951",
+      "nome": "Queijo Coalho Espeto Select 350g",
+      "comum": 22.36,
+      "cartao": 22.36,
+      "regra": ""
+    },
+    {
+      "id": 334,
+      "ean": "7898460934743",
+      "nome": "Queijo Parmesão Fiapo Select 40g",
+      "comum": 4.69,
+      "cartao": 4.69,
+      "regra": ""
+    },
+    {
+      "id": 335,
+      "ean": "7898460934750",
+      "nome": "Queijo Parmesão Ralado Select 40g",
+      "comum": 4.69,
+      "cartao": 4.69,
+      "regra": ""
+    },
+    {
+      "id": 336,
+      "ean": "7890000025454",
+      "nome": "Queijo Prato Ipanema Fatiado 200g",
+      "comum": 11.58,
+      "cartao": 11.58,
+      "regra": ""
+    },
+    {
+      "id": 337,
+      "ean": "7896625212149",
+      "nome": "Queijo Parmesão Ralado Vigor 10g",
+      "comum": 1.79,
+      "cartao": 1.79,
+      "regra": ""
+    },
+    {
+      "id": 338,
+      "ean": "7890000122177",
+      "nome": "Queijo Minas Padrão Président 450g",
+      "comum": 35.06,
+      "cartao": 35.06,
+      "regra": ""
+    },
+    {
+      "id": 339,
+      "ean": "7891515593865",
+      "nome": "Margarina com Sal Uso Profissional Sofiteli 15Kg",
+      "comum": 175.99,
+      "cartao": 175.99,
+      "regra": ""
+    },
+    {
+      "id": 340,
+      "ean": "7896279600293",
+      "nome": "Margarina com Sal Dualis 500g",
+      "comum": 4.29,
+      "cartao": 4.29,
+      "regra": ""
+    },
+    {
+      "id": 341,
+      "ean": "7891999011039",
+      "nome": "Margarina com Sal Vigor 80% 500g",
+      "comum": 8.59,
+      "cartao": 8.59,
+      "regra": ""
+    },
+    {
+      "id": 342,
+      "ean": "8670003314491",
+      "nome": "Margarina Leco com Sal 200g",
+      "comum": 13.9,
+      "cartao": 13.9,
+      "regra": ""
+    },
+    {
+      "id": 343,
+      "ean": "7891999004833",
+      "nome": "Margarina 80% com Sal Vigor 1Kg",
+      "comum": 17.9,
+      "cartao": 17.9,
+      "regra": ""
+    },
+    {
+      "id": 344,
+      "ean": "8670001064961",
+      "nome": "Margarina Cremosa com Sal Qualy 500g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 345,
+      "ean": "8670000515518",
+      "nome": "Margarina Cremosa com Sal Qualy 250g",
+      "comum": 5.29,
+      "cartao": 5.29,
+      "regra": ""
+    },
+    {
+      "id": 346,
+      "ean": "7893000383005",
+      "nome": "Margarina Cremosa sem Sal Qualy 500g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 347,
+      "ean": "7891515901066",
+      "nome": "Margarina Cremosa com Sal Claybom Pote 250g",
+      "comum": 3.75,
+      "cartao": 3.75,
+      "regra": ""
+    },
+    {
+      "id": 348,
+      "ean": "7891515622930",
+      "nome": "Margarina Cremosa com Sal Claybom Balde 14kg",
+      "comum": 139.9,
+      "cartao": 139.9,
+      "regra": ""
+    },
+    {
+      "id": 349,
+      "ean": "7894904271511",
+      "nome": "Margarina Delícia com Creme de Leite com Sal 1kg",
+      "comum": 15.5,
+      "cartao": 15.5,
+      "regra": ""
+    },
+    {
+      "id": 350,
+      "ean": "7891515901059",
+      "nome": "Margarina Cremosa com Sal Claybom Pote 500g",
+      "comum": 6.39,
+      "cartao": 6.39,
+      "regra": ""
+    },
+    {
+      "id": 351,
+      "ean": "8670003112943",
+      "nome": "Margarina Qualy com Sal Light Zero Lactose 500g",
+      "comum": 10.89,
+      "cartao": 10.89,
+      "regra": ""
+    },
+    {
+      "id": 352,
+      "ean": "7894904271566",
+      "nome": "Margarina Delícia com Creme de Leite sem Sal 500g",
+      "comum": 9.29,
+      "cartao": 9.29,
+      "regra": ""
+    },
+    {
+      "id": 353,
+      "ean": "7894904282111",
+      "nome": "Margarina com Sal 60% de Gordura Primor 3kg",
+      "comum": 39.9,
+      "cartao": 39.9,
+      "regra": ""
+    },
+    {
+      "id": 354,
+      "ean": "7894904271535",
+      "nome": "Margarina Delícia com Creme de Leite com Sal 250g",
+      "comum": 5.15,
+      "cartao": 5.15,
+      "regra": ""
+    },
+    {
+      "id": 355,
+      "ean": "7893000079298",
+      "nome": "Margarina Cremosa com Sal Qualy 1kg Embalagem Econômica",
+      "comum": 15.9,
+      "cartao": 15.9,
+      "regra": ""
+    },
+    {
+      "id": 356,
+      "ean": "7891515410315",
+      "nome": "Margarina com Sal Claybom 1kg",
+      "comum": 11.5,
+      "cartao": 11.5,
+      "regra": ""
+    },
+    {
+      "id": 357,
+      "ean": "7891515550097",
+      "nome": "Margarina com Sal Uso Profissional Sofiteli Food Service Balde 3kg",
+      "comum": 33.79,
+      "cartao": 33.79,
+      "regra": ""
+    },
+    {
+      "id": 358,
+      "ean": "7891080403712",
+      "nome": "Margarina Primor Balde 15kg",
+      "comum": 195.9,
+      "cartao": 195.9,
+      "regra": ""
+    },
+    {
+      "id": 359,
+      "ean": "7896625212514",
+      "nome": "Iogurte Vigor com Pistache - 170g",
+      "comum": 3.89,
+      "cartao": 3.89,
+      "regra": ""
+    },
+    {
+      "id": 360,
+      "ean": "7896112320296",
+      "nome": "Iogurte Sabor Morango Yuc Mix 1L",
+      "comum": 6.99,
+      "cartao": 6.99,
+      "regra": ""
+    },
+    {
+      "id": 361,
+      "ean": "7891000072974",
+      "nome": "Iogurte Nestlé Natural Mel 170g",
+      "comum": 3.99,
+      "cartao": 3.99,
+      "regra": ""
+    },
+    {
+      "id": 362,
+      "ean": "7891000261026",
+      "nome": "Nestlé Ninho® Iogurte Polpa de Morango, Salada de Frutas,  Maçã e Banana 540G com 6 unidades",
+      "comum": 9.69,
+      "cartao": 9.69,
+      "regra": ""
+    },
+    {
+      "id": 363,
+      "ean": "7896112320289",
+      "nome": "Iogurte Sabor Morango Yuc Mix 850g",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 364,
+      "ean": "7898460936044",
+      "nome": "Iogurte Natural Mel Select 150g",
+      "comum": 3.29,
+      "cartao": 3.29,
+      "regra": ""
+    },
+    {
+      "id": 365,
+      "ean": "7891025101376",
+      "nome": "Iogurte Líquido Danone Morango 170g",
+      "comum": 4.39,
+      "cartao": 4.39,
+      "regra": ""
+    },
+    {
+      "id": 366,
+      "ean": "7896625210442",
+      "nome": "Iogurte Batido Vigor Natural 180ml",
+      "comum": 3.89,
+      "cartao": 3.89,
+      "regra": ""
+    },
+    {
+      "id": 367,
+      "ean": "7898460935979",
+      "nome": "Iogurte Líquido Morango Select 160g",
+      "comum": 2.69,
+      "cartao": 2.69,
+      "regra": ""
+    },
+    {
+      "id": 368,
+      "ean": "7896112320319",
+      "nome": "Iogurte Salada de Frutas Yuc Mix 1L",
+      "comum": 6.99,
+      "cartao": 6.99,
+      "regra": ""
+    },
+    {
+      "id": 369,
+      "ean": "7891000073018",
+      "nome": "Iogurte Nestlé Natural Desnatado 160g",
+      "comum": 3.99,
+      "cartao": 3.99,
+      "regra": ""
+    },
+    {
+      "id": 370,
+      "ean": "8670009724287",
+      "nome": "Iogurte sabor Morango Frutap 900g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 371,
+      "ean": "7896112320210",
+      "nome": "Iogurte Sabor Tutti Frutti Yuc Mix 1L",
+      "comum": 6.99,
+      "cartao": 6.99,
+      "regra": ""
+    },
+    {
+      "id": 372,
+      "ean": "7896862000684",
+      "nome": "Iogurte sabor Salada de Frutas Frutap 900g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 373,
+      "ean": "7896112320197",
+      "nome": "Iogurte Sabor Tutti Frutti Yuc Mix 850g",
+      "comum": 8.19,
+      "cartao": 8.19,
+      "regra": ""
+    },
+    {
+      "id": 374,
+      "ean": "7891097106996",
+      "nome": "Iogurte Batavo Bob Esponja 110g",
+      "comum": 4.69,
+      "cartao": 4.69,
+      "regra": ""
+    },
+    {
+      "id": 375,
+      "ean": "7891097102851",
+      "nome": "Iogurte Morango Batavo 170g",
+      "comum": 2.79,
+      "cartao": 2.79,
+      "regra": ""
+    },
+    {
+      "id": 376,
+      "ean": "7898460936006",
+      "nome": "Iogurte Select Polpa de Morango 480g",
+      "comum": 5.29,
+      "cartao": 5.29,
+      "regra": ""
+    },
+    {
+      "id": 377,
+      "ean": "7896862000868",
+      "nome": "Iogurte sabor Frutas Vermelhas Frutap 900g",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 378,
+      "ean": "7891515925321",
+      "nome": "Iogurte Sabor Mel Natural Batavo 170g",
+      "comum": 3.09,
+      "cartao": 3.09,
+      "regra": ""
+    },
+    {
+      "id": 379,
+      "ean": "7891150080546",
+      "nome": "Maionese Hellmann's Supreme 330 g",
+      "comum": 13.29,
+      "cartao": 13.29,
+      "regra": ""
+    },
+    {
+      "id": 380,
+      "ean": "7891150101548",
+      "nome": "Maionese Supreme Hellmann's 230g",
+      "comum": 11.29,
+      "cartao": 11.29,
+      "regra": ""
+    },
+    {
+      "id": 381,
+      "ean": "7891150105591",
+      "nome": "Molho Barbecue Defumado Hellmanns - 380g",
+      "comum": 21.89,
+      "cartao": 21.89,
+      "regra": ""
+    },
+    {
+      "id": 382,
+      "ean": "7891150027800",
+      "nome": "Maionese Hellmann's Tradicional 335g",
+      "comum": 11.89,
+      "cartao": 11.89,
+      "regra": ""
+    },
+    {
+      "id": 383,
+      "ean": "7896102501650",
+      "nome": "Molho de Tomate Quero 2kg",
+      "comum": 12.9,
+      "cartao": 12.9,
+      "regra": ""
+    },
+    {
+      "id": 384,
+      "ean": "7891150089426",
+      "nome": "Molho de Alho Knorr 150ml",
+      "comum": 8.39,
+      "cartao": 8.39,
+      "regra": ""
+    },
+    {
+      "id": 385,
+      "ean": "7896007811311",
+      "nome": "Molho Alho Kenko Vidro 150ml",
+      "comum": 5.9,
+      "cartao": 5.9,
+      "regra": ""
+    },
+    {
+      "id": 386,
+      "ean": "7896007811021",
+      "nome": "Molho Shoyu Aji No Shoyu 150ml",
+      "comum": 4.59,
+      "cartao": 4.59,
+      "regra": ""
+    },
+    {
+      "id": 387,
+      "ean": "7896025803114",
+      "nome": "Molho Barbecue Cepêra 400g",
+      "comum": 13.29,
+      "cartao": 13.29,
+      "regra": ""
+    },
+    {
+      "id": 388,
+      "ean": "7896292315327",
+      "nome": "Molho Barbecue Predilecta 3,5Kg",
+      "comum": 39.9,
+      "cartao": 39.9,
+      "regra": ""
+    },
+    {
+      "id": 389,
+      "ean": "7896455004334",
+      "nome": "Molho de Pizza Ekma 1,7kg",
+      "comum": 10.9,
+      "cartao": 10.9,
+      "regra": ""
+    },
+    {
+      "id": 390,
+      "ean": "7896007865864",
+      "nome": "Molho Agridoce Kenko 180g",
+      "comum": 8.09,
+      "cartao": 8.09,
+      "regra": ""
+    },
+    {
+      "id": 391,
+      "ean": "7896007865970",
+      "nome": "Molho Tarê Sakura Squeeze 180ml",
+      "comum": 9.6,
+      "cartao": 9.6,
+      "regra": ""
+    },
+    {
+      "id": 392,
+      "ean": "7896292309517",
+      "nome": "Molho Branco Predilecta Sachê 240g",
+      "comum": 6.19,
+      "cartao": 6.19,
+      "regra": ""
+    },
+    {
+      "id": 393,
+      "ean": "7898075643931",
+      "nome": "Molho de Pimenta Campo Belo 150ml",
+      "comum": 2.99,
+      "cartao": 2.99,
+      "regra": ""
+    },
+    {
+      "id": 394,
+      "ean": "7896292334298",
+      "nome": "Molho Madeira Predilecta 300g",
+      "comum": 4.59,
+      "cartao": 4.59,
+      "regra": ""
+    },
+    {
+      "id": 395,
+      "ean": "7896025805071",
+      "nome": "Molho Tarê Umai Cepêra 125ml",
+      "comum": 9.19,
+      "cartao": 9.19,
+      "regra": ""
+    },
+    {
+      "id": 396,
+      "ean": "7896036090909",
+      "nome": "Molho para Salada Rose Liza 234ml",
+      "comum": 11.99,
+      "cartao": 11.99,
+      "regra": ""
+    },
+    {
+      "id": 397,
+      "ean": "7896007800896",
+      "nome": "Molho Shoyu Yakissoba Sakura 500ml",
+      "comum": 19.89,
+      "cartao": 19.89,
+      "regra": ""
+    },
+    {
+      "id": 398,
+      "ean": "7896007811403",
+      "nome": "Molho Inglês Kenko Vidro 150ml",
+      "comum": 4.69,
+      "cartao": 4.69,
+      "regra": ""
+    },
+    {
+      "id": 399,
+      "ean": "7896102503821",
+      "nome": "Molho de Tomate com Manjericão Heinz 240g",
+      "comum": 4.19,
+      "cartao": 4.19,
+      "regra": ""
+    },
+    {
+      "id": 400,
+      "ean": "7896025802865",
+      "nome": "Molho de Pimenta Vermelha Cepêra Pet 1,01L",
+      "comum": 12.59,
+      "cartao": 12.59,
+      "regra": ""
+    },
+    {
+      "id": 401,
+      "ean": "7891234001825",
+      "nome": "Molho de Tomate Polpa Pomodoro 520g",
+      "comum": 6.09,
+      "cartao": 6.09,
+      "regra": ""
+    },
+    {
+      "id": 402,
+      "ean": "7896007811007",
+      "nome": "Molho Soja Tradicional Sakura 150ml",
+      "comum": 5.09,
+      "cartao": 5.09,
+      "regra": ""
+    }
+  ]
+}
