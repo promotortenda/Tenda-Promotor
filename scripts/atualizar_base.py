@@ -2,6 +2,7 @@ import json
 import os
 import time
 from datetime import datetime, timezone, timedelta
+import urllib.error
 import urllib.request
 import urllib.parse
 
@@ -14,12 +15,37 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "Accept": "application/json, text/plain, */*",
     "Accept-Language": "pt-BR,pt;q=0.9",
+    "Origin": "https://www.tendaatacado.com.br",
+    "Referer": "https://www.tendaatacado.com.br/",
 }
+
+ENDPOINTS_CANDIDATOS = [
+    "https://api.tendaatacado.com.br/api/public/store/search?q={query}&zipCode={cep}&page=1&limit=50",
+    "https://api.tendaatacado.com.br/api/public/store/search?q={query}&cep={cep}&page=1&limit=50",
+    "https://api.tendaatacado.com.br/api/public/catalog/search?q={query}&zipCode={cep}&page=1&limit=50",
+    "https://api.tendaatacado.com.br/api/public/products/search?q={query}&zipCode={cep}&page=1&limit=50",
+    "https://www.tendaatacado.com.br/api/public/store/search?q={query}&zipCode={cep}&page=1&limit=50",
+]
+
+
+def _extrair_itens(payload):
+    if isinstance(payload, list):
+        return payload
+    if isinstance(payload, dict):
+        for chave in ("products", "items", "data", "results", "content"):
+            valor = payload.get(chave)
+            if isinstance(valor, list):
+                return valor
+            if isinstance(valor, dict):
+                for subchave in ("products", "items", "list", "content"):
+                    if isinstance(valor.get(subchave), list):
+                        return valor[subchave]
+    return []
 
 
 def buscar_produtos_tenda(cep: str):
     """
-    Consulta endpoints públicos de catálogo/vitrine associados ao CEP informado.
+    Testa endpoints públicos de catálogo/vitrine associados ao CEP informado.
     Retorna lista padronizada no formato esperado pelo Index.html.
     """
     produtos_coletados = []
@@ -32,28 +58,47 @@ def buscar_produtos_tenda(cep: str):
         "queijo", "margarina", "iogurte", "molho"
     ]
 
+    endpoint_ativo = None
+    erros_registrados = 0
+
     for termo in termos_busca:
         query = urllib.parse.quote(termo)
-        url = f"https://api.tendaatacado.com.br/api/public/store/search?q={query}&zipCode={cep}&page=1&limit=50"
-        req = urllib.request.Request(url, headers=HEADERS)
+        candidatos = [endpoint_ativo] if endpoint_ativo else ENDPOINTS_CANDIDATOS
 
-        try:
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                if resp.status != 200:
-                    continue
-                payload = json.loads(resp.read().decode("utf-8"))
-        except Exception as e:
-            print(f"[Aviso] Falha ao consultar termo '{termo}': {e}")
-            time.sleep(1.5)
+        payload = None
+        for template in candidatos:
+            url = template.format(query=query, cep=cep)
+            req = urllib.request.Request(url, headers=HEADERS)
+            try:
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    if resp.status != 200:
+                        continue
+                    payload = json.loads(resp.read().decode("utf-8"))
+                    endpoint_ativo = template
+                    break
+            except urllib.error.HTTPError as e:
+                if erros_registrados < 5:
+                    corpo = ""
+                    try:
+                        corpo = e.read().decode("utf-8", errors="ignore")[:180].strip()
+                    except Exception:
+                        corpo = ""
+                    print(f"[Aviso] '{termo}' em {url} -> HTTP {e.code} {e.reason} {corpo}")
+                    erros_registrados += 1
+            except Exception as e:
+                if erros_registrados < 5:
+                    print(f"[Aviso] Falha ao consultar termo '{termo}': {e}")
+                    erros_registrados += 1
+
+        if payload is None:
+            time.sleep(1.0)
             continue
 
-        itens = []
-        if isinstance(payload, dict):
-            itens = payload.get("products") or payload.get("items") or payload.get("data") or []
-        elif isinstance(payload, list):
-            itens = payload
+        itens = _extrair_itens(payload)
 
         for item in itens:
+            if not isinstance(item, dict):
+                continue
             ean = str(item.get("ean") or item.get("barcode") or item.get("gtin") or "").strip()
             nome = str(item.get("name") or item.get("title") or "").strip()
             if not nome:
