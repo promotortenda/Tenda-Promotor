@@ -21,12 +21,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Executar atualização de produtos (CEP 13255280)
-        run: python scripts/atualizar_base.py
-
       - name: Salvar data/produtos.json se houver alterações
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/produtos.json
-          git diff --staged --quiet || (git commit -m "chore: atualiza base CEP 13255-280" && git push)
+          if [ -f "data/produtos.json" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/produtos.json
+            git diff --staged --quiet || (git commit -m "chore: atualiza base CEP 13255-280" && git push)
+          else
+            echo "Arquivo data/produtos.json não foi gerado nesta execução."
+          fi
