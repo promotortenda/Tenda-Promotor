@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tenda Promotor</title>
+<title>Tenda Promotor - Itatiba</title>
 <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
   header { background: #b91c1c; color: #fff; padding: 14px 16px; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .top-row { max-width: 500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .top-row { max-width: 500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   h1 { font-size: 19px; font-weight: 800; letter-spacing: -0.5px; }
   .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
   .status.erro { color: #fecaca; }
-  .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .cep-badge { background: #fef08a; color: #854d0e; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 999px; display: inline-block; margin-top: 4px; }
+  .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; shrink: 0; }
   main { max-width: 500px; margin: 0 auto; padding: 14px; }
   #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; position: relative; }
   video { width: 100%; max-height: 240px; object-fit: cover; display: block; }
@@ -36,7 +37,8 @@
   .p-val { font-size: 15px; font-weight: 700; color: #374151; }
   .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
   .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
-  .empty { text-align: center; color: #6b7280; font-size: 14px; padding: 24px 12px; background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; }
+  .empty { text-align: center; color: #4b5563; font-size: 14px; padding: 22px 14px; background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; line-height: 1.5; }
+  .btn-reset-filter { margin-top: 10px; background: #1d4ed8; color: #fff; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
   footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
   .foot-inner { max-width: 500px; margin: 0 auto; }
   .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
@@ -55,7 +57,8 @@
   <div class="top-row">
     <div>
       <h1>TENDA PROMOTOR</h1>
-      <div id="statusBase" class="status">● Online (Base Ativa)</div>
+      <div id="statusBase" class="status">● Carregando base...</div>
+      <div id="infoLoja" class="cep-badge">Loja Itatiba • CEP 13255-280</div>
     </div>
     <button class="btn-sync" onclick="limpar()">↻ Limpar</button>
   </div>
@@ -102,7 +105,8 @@
 </footer>
 
 <script>
-  var produtos = [
+  var CEP_PADRAO = "13255-280";
+  var produtosFallback = [
     {id:1, ean:"7896005800027", nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
     {id:2, ean:"7896005806203", nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
     {id:3, ean:"7896005806142", nome:"Cápsula de Café Espresso Vibrante 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
@@ -126,11 +130,14 @@
     {id:21, ean:"7898215152019", nome:"Bananinha Zero Açúcar Oliveira 22g 24 Unid", comum:52.56, cartao:52.56, regra:""},
     {id:22, ean:"7898952411029", nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
   ];
+
+  var produtos = produtosFallback.slice();
   var carrinho = [];
   var streamCam = null;
   var intervaloScan = null;
   var zxingReader = null;
   var canvasScan = document.createElement("canvas");
+  var statusBasePadrao = "● Online (Base Local)";
 
   function fmt(v) {
     return "R$ " + Number(v || 0).toFixed(2).replace(".", ",");
@@ -142,12 +149,51 @@
     el.className = isErro ? "status erro" : "status";
   }
 
+  async function carregarBaseExterna() {
+    try {
+      var resp = await fetch("./data/produtos.json?t=" + Date.now(), { cache: "no-store" });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      var dados = await resp.json();
+
+      if (dados && Array.isArray(dados.produtos) && dados.produtos.length > 0) {
+        produtos = dados.produtos;
+        var dataTxt = "";
+        if (dados.atualizadoEm) {
+          var dt = new Date(dados.atualizadoEm);
+          if (!isNaN(dt.getTime())) {
+            dataTxt = " • Atualizado " + dt.toLocaleDateString("pt-BR") + " " + dt.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+          }
+        }
+        statusBasePadrao = "● Base Sincronizada (" + produtos.length + " itens)" + dataTxt;
+        setStatus(statusBasePadrao, false);
+        if (dados.cep) {
+          document.getElementById("infoLoja").textContent = "Loja Itatiba • CEP " + dados.cep;
+        }
+        filtrar();
+        return;
+      }
+      throw new Error("Base vazia");
+    } catch (e) {
+      produtos = produtosFallback.slice();
+      statusBasePadrao = "● Base Local (" + produtos.length + " itens)";
+      setStatus(statusBasePadrao, false);
+      filtrar();
+    }
+  }
+
   function desenhar(lista) {
     var box = document.getElementById("lista");
     box.innerHTML = "";
 
     if (!lista || lista.length === 0) {
-      box.innerHTML = '<div class="empty">Nenhum produto encontrado para o filtro atual.</div>';
+      var termoAtual = document.getElementById("searchInput").value.trim();
+      box.innerHTML =
+        '<div class="empty">' +
+          '<strong>Produto não localizado</strong>' +
+          (termoAtual ? '<br>Código/termo buscado: <code>' + termoAtual + '</code>' : '') +
+          '<br><small>Verifique se o item está no catálogo do CEP ' + CEP_PADRAO + ' ou busque pelo nome.</small>' +
+          '<br><button class="btn-reset-filter" onclick="limparBusca()">Mostrar todos os produtos</button>' +
+        '</div>';
       return;
     }
 
@@ -163,7 +209,7 @@
       }
 
       card.innerHTML =
-        '<span class="ean-tag">EAN: ' + p.ean + '</span>' +
+        '<span class="ean-tag">EAN: ' + (p.ean || "N/D") + '</span>' +
         '<div class="prod-title">' + p.nome + '</div>' +
         hRegra +
         '<div class="prices">' +
@@ -189,9 +235,17 @@
       return;
     }
     var filtrados = produtos.filter(function(p) {
-      return p.nome.toLowerCase().indexOf(termo) !== -1 || p.ean.indexOf(termo) !== -1;
+      var nomeOk = p.nome && p.nome.toLowerCase().indexOf(termo) !== -1;
+      var eanOk = p.ean && String(p.ean).indexOf(termo) !== -1;
+      return nomeOk || eanOk;
     });
     desenhar(filtrados);
+  }
+
+  function limparBusca() {
+    document.getElementById("searchInput").value = "";
+    setStatus(statusBasePadrao, false);
+    filtrar();
   }
 
   function adicionarCarrinho(id) {
@@ -222,7 +276,7 @@
     document.getElementById("searchInput").value = "";
     atualizarPlacar();
     filtrar();
-    setStatus("● Online (Base Ativa)", false);
+    setStatus(statusBasePadrao, false);
   }
 
   function processarCodigoLido(codigo) {
@@ -341,8 +395,8 @@
     document.getElementById("camBox").style.display = "none";
   }
 
-  desenhar(produtos);
   atualizarPlacar();
+  carregarBaseExterna();
 </script>
 </body>
 </html>
