@@ -26,6 +26,36 @@ ENDPOINTS_JSON = [
     "https://api.tendaatacado.com.br/api/public/store/search?query={query}&postalCode={cep}&page=1&limit=50",
 ]
 
+TERMOS_BUSCA = [
+    # Mercearia básica e grãos
+    "arroz", "feijao", "cafe", "oleo", "azeite", "acucar", "sal",
+    "farinha", "fuba", "polvilho", "fermento", "milho", "aveia", "granola",
+    # Massas, molhos e conservas
+    "macarrao", "miojo", "molho", "extrato de tomate", "maionese", "ketchup",
+    "mostarda", "azeitona", "milho verde", "ervilha", "atum", "sardinha",
+    # Laticínios, frios e padaria
+    "leite", "leite condensado", "creme de leite", "queijo", "mussarela",
+    "presunto", "requeijao", "margarina", "manteiga", "iogurte", "pao",
+    # Carnes e congelados
+    "frango", "carne", "linguica", "salsicha", "hamburguer", "nuggets",
+    "lasanha", "pizza", "batata congelada",
+    # Biscoitos, doces e matinais
+    "biscoito", "bolacha", "chocolate", "bombom", "achocolatado", "cereal",
+    "geleia", "mel", "bala", "chiclete",
+    # Bebidas
+    "refrigerante", "suco", "agua", "agua com gas", "energetico", "cha",
+    "cerveja", "vinho", "vodka", "cachaca", "whisky",
+    # Limpeza
+    "sabao", "sabao em po", "detergente", "amaciante", "agua sanitaria",
+    "desinfetante", "limpador", "esponja", "saco de lixo", "pano de limpeza",
+    # Higiene pessoal e perfumaria
+    "papel higienico", "sabonete", "shampoo", "condicionador", "creme dental",
+    "escova de dente", "desodorante", "absorvente", "fralda", "lenco umedecido",
+    # Utilidades e pet
+    "papel toalha", "papel aluminio", "filme pvc", "lampada", "pilha",
+    "racao", "petisco", "areia gato",
+]
+
 
 def _extrair_itens(payload):
     if isinstance(payload, list):
@@ -55,7 +85,6 @@ def _parse_preco(valor):
 
 
 def _extrair_json_embutido_html(html_texto):
-    # Procura blocos JSON em scripts (ex.: __NEXT_DATA__ ou estado inicial da página)
     match_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html_texto, re.DOTALL)
     if match_next:
         try:
@@ -79,22 +108,16 @@ def buscar_produtos_tenda(cep: str):
     """
     Consulta o endpoint ajustado com 'query=' e, se necessário, tenta extrair
     dados embutidos da página de busca do Tenda para o CEP informado.
+    Retorna lista padronizada no formato esperado pelo Index.html.
     """
     produtos_coletados = []
     vistos = set()
-
-    termos_busca = [
-        "arroz", "feijao", "cafe", "oleo", "acucar", "leite",
-        "macarrao", "biscoito", "chocolate", "refrigerante", "cerveja",
-        "sabao", "amaciante", "papel higienico", "frango", "carne",
-        "queijo", "margarina", "iogurte", "molho"
-    ]
 
     endpoint_ativo = None
     usar_fallback_html = False
     erros_registrados = 0
 
-    for termo in termos_busca:
+    for termo in TERMOS_BUSCA:
         query = urllib.parse.quote(termo)
         payload = None
 
@@ -176,7 +199,7 @@ def buscar_produtos_tenda(cep: str):
                     "regra": regra
                 })
 
-        time.sleep(1.2)
+        time.sleep(0.8)
 
     return produtos_coletados
 
