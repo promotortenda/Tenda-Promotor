@@ -1,0 +1,32 @@
+name: Atualizar Base Tenda Itatiba (CEP 13255-280)
+
+on:
+  schedule:
+    # Roda todo dia às 06:30 (Horário de Brasília / UTC-3)
+    - cron: "30 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Executar atualização de produtos (CEP 13255280)
+        run: python scripts/atualizar_base.py
+
+      - name: Salvar data/produtos.json se houver alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/produtos.json
+          git diff --staged --quiet || (git commit -m "chore: atualiza base CEP 13255-280" && git push)
