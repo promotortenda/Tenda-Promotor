@@ -3,666 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tenda Promotor - Itatiba</title>
-<script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+<title>Carteira de Captação - Tenda Itatiba</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  body { background: #f3f4f6; padding-bottom: 145px; color: #1f2937; }
+  body { background: #f3f4f6; color: #1f2937; padding-bottom: 40px; }
   header { background: #b91c1c; color: #fff; padding: 14px 16px; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .top-row { max-width: 500px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  h1 { font-size: 19px; font-weight: 800; letter-spacing: -0.5px; }
-  .status { font-size: 11px; color: #bbf7d0; font-weight: 600; margin-top: 2px; }
-  .status.erro { color: #fecaca; }
-  .cep-badge { background: #fef08a; color: #854d0e; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 999px; display: inline-block; margin-top: 4px; }
-  .btn-sync { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; shrink: 0; }
-  main { max-width: 500px; margin: 0 auto; padding: 14px; }
-  #camBox { display: none; background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 14px; position: relative; }
-  video { width: 100%; max-height: 240px; object-fit: cover; display: block; }
-  .scan-line { position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: #ef4444; box-shadow: 0 0 8px #ef4444; pointer-events: none; }
-  .btn-close-cam { width: 100%; background: #374151; color: #fff; border: none; padding: 10px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
-  .search-box { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-  .search-row { display: flex; gap: 8px; }
-  input { flex: 1; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background: #f9fafb; outline: none; min-width: 0; }
-  .btn-bip { background: #1d4ed8; color: #fff; border: none; padding: 0 14px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; }
-  .card { background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 12px; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-  .ean-tag { display: inline-block; font-size: 10px; font-family: monospace; background: #f3f4f6; color: #6b7280; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; }
-  .prod-title { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 8px; line-height: 1.35; }
-  .regra { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
-  .econ-tag { color: #15803d; font-weight: 800; }
-  .prices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: center; margin-bottom: 10px; }
-  .p-box { padding: 8px; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb; }
-  .p-box.cartao { background: #eff6ff; border: 2px solid #2563eb; }
-  .p-label { display: block; font-size: 10px; text-transform: uppercase; color: #6b7280; font-weight: 700; }
-  .p-box.cartao .p-label { color: #1e40af; }
-  .p-val { font-size: 15px; font-weight: 700; color: #374151; }
-  .p-box.cartao .p-val { font-size: 17px; font-weight: 800; color: #1d4ed8; }
-  .btn-add { width: 100%; background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
-  .empty { text-align: center; color: #4b5563; font-size: 14px; padding: 22px 14px; background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; line-height: 1.5; }
-  .btn-reset-filter { margin-top: 10px; background: #1d4ed8; color: #fff; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
-  footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid #dc2626; padding: 10px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 30; }
-  .foot-inner { max-width: 500px; margin: 0 auto; }
-  .foot-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #4b5563; margin-bottom: 6px; }
-  .btn-clear { background: none; border: none; color: #dc2626; text-decoration: underline; font-size: 12px; font-weight: 600; cursor: pointer; }
-  .totals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; text-align: center; background: #f9fafb; padding: 8px; border-radius: 8px; border: 1px solid #e5e7eb; }
-  .t-lbl { font-size: 10px; text-transform: uppercase; color: #6b7280; font-weight: 700; }
-  .t-comum { font-size: 13px; font-weight: 700; text-decoration: line-through; color: #6b7280; }
-  .t-cartao { font-size: 15px; font-weight: 800; color: #1d4ed8; }
-  .t-econ-box { background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 2px; }
-  .t-econ { font-size: 15px; font-weight: 800; color: #15803d; }
+  .top-inner { max-width: 680px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  h1 { font-size: 18px; font-weight: 800; }
+  .sub { font-size: 11px; color: #fecaca; margin-top: 2px; }
+  .btn-voltar { background: #991b1b; color: #fff; border: 1px solid #ef4444; padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+  main { max-width: 680px; margin: 0 auto; padding: 14px; }
+  .box { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .box-title { font-size: 14px; font-weight: 800; color: #111827; margin-bottom: 10px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+  input, select { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #f9fafb; outline: none; }
+  .btn-salvar { margin-top: 10px; width: 100%; background: #ea580c; color: #fff; border: none; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; }
+  .toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tab { padding: 7px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; color: #374151; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .tab.ativa { background: #111827; color: #fff; border-color: #111827; }
+  .acoes-arq { display: flex; gap: 6px; }
+  .btn-sec { padding: 7px 10px; border-radius: 8px; border: 1px solid #d1d5db; background: #f9fafb; color: #111827; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .lead { border: 1px solid #e5e7eb; background: #fff; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+  .lead.pronto { border-color: #86efac; background: #f0fdf4; }
+  .lead-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: #e5e7eb; color: #374151; margin-left: 6px; }
+  .badge.ok { background: #dcfce7; color: #166534; }
+  .meta { font-size: 12px; color: #4b5563; margin-top: 4px; }
+  .obs { font-size: 12px; color: #111827; margin-top: 4px; }
+  .btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .b-cpf { padding: 6px 10px; border-radius: 7px; border: 1px solid #cbd5e1; background: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .b-wpp { padding: 6px 10px; border-radius: 7px; border: none; background: #16a34a; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .b-ok { padding: 6px 10px; border-radius: 7px; border: 1px solid #cbd5e1; background: #fff; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .b-del { padding: 6px 10px; border-radius: 7px; border: none; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .vazio { text-align: center; color: #6b7280; font-size: 13px; padding: 20px; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="top-row">
+  <div class="top-inner">
     <div>
-      <h1>TENDA PROMOTOR</h1>
-      <div id="statusBase" class="status">● Carregando base...</div>
-      <div id="infoLoja" class="cep-badge">Loja Itatiba • CEP 13255-280</div>
+      <h1>CARTEIRA DE CAPTAÇÃO</h1>
+      <div class="sub">Loja Itatiba • CEP 13255-280 • Salvo apenas neste aparelho</div>
     </div>
-    <button class="btn-sync" onclick="limpar()">↻ Limpar</button>
+    <a class="btn-voltar" href="./Index.html">← Calculadora</a>
   </div>
 </header>
 
 <main>
-  <div id="camBox">
-    <video id="videoCam" playsinline autoplay muted></video>
-    <div class="scan-line"></div>
-    <button class="btn-close-cam" onclick="fecharCamera()">✕ Fechar Câmera</button>
-  </div>
-
-  <div class="search-box">
-    <div class="search-row">
-      <input type="text" id="searchInput" oninput="filtrar()" placeholder="Nome ou código EAN...">
-      <button class="btn-bip" onclick="abrirCamera()">📷 Bip</button>
+  <form class="box" onsubmit="salvarLead(event)">
+    <div class="box-title">+ Registrar cliente / tentativa</div>
+    <div class="grid">
+      <input id="nome" type="text" required placeholder="Nome do cliente">
+      <input id="cpf" type="text" placeholder="CPF (opcional)">
+      <input id="fone" type="tel" required placeholder="WhatsApp (ex: 11999999999)">
+      <input id="data" type="date" required>
+      <select id="tag">
+        <option value="Reprovado (30d)">Reprovado (ciclo 30d)</option>
+        <option value="Quase-conversao">Quase-conversão / Pressa</option>
+        <option value="Comerciante">Comerciante / PJ</option>
+        <option value="Indicacao">Indicação</option>
+      </select>
+      <input id="obs" type="text" placeholder="Observação (opcional)">
     </div>
-  </div>
+    <button class="btn-salvar" type="submit">Salvar na Carteira</button>
+  </form>
 
-  <div id="lista"></div>
+  <div class="box">
+    <div class="toolbar">
+      <div class="tabs">
+        <button type="button" id="tab-prontos30" class="tab ativa" onclick="setFiltro('prontos30')">Prontos 30d+</button>
+        <button type="button" id="tab-aguardando" class="tab" onclick="setFiltro('aguardando')">Aguardando 30d</button>
+        <button type="button" id="tab-todos" class="tab" onclick="setFiltro('todos')">Todos</button>
+      </div>
+      <div class="acoes-arq">
+        <button type="button" class="btn-sec" onclick="exportarJSON()">Backup JSON</button>
+        <label class="btn-sec">
+          Importar
+          <input type="file" accept=".json" onchange="importarJSON(event)" style="display:none">
+        </label>
+      </div>
+    </div>
+    <div id="listaLeads"></div>
+  </div>
 </main>
 
-<footer>
-  <div class="foot-inner">
-    <div class="foot-top">
-      <span>CARRINHO (<span id="qtdItens">0</span> ITENS)</span>
-      <button class="btn-clear" onclick="limpar()">Limpar carrinho</button>
-    </div>
-    <div class="totals">
-      <div>
-        <div class="t-lbl">Comum</div>
-        <div id="totalComum" class="t-comum">R$ 0,00</div>
-      </div>
-      <div>
-        <div class="t-lbl" style="color:#1e40af">Cartão Tenda</div>
-        <div id="totalCartao" class="t-cartao">R$ 0,00</div>
-      </div>
-      <div class="t-econ-box">
-        <div class="t-lbl" style="color:#166534">Economia</div>
-        <div id="totalEconomia" class="t-econ">R$ 0,00</div>
-      </div>
-    </div>
-  </div>
-</footer>
-
 <script>
-  var CEP_PADRAO = "13255-280";
-  var produtosFallback = [
-    {id:1, ean:"7896005800027", nome:"Café em pó 3 Corações Tradicional 500g", comum:25.99, cartao:25.99, regra:""},
-    {id:2, ean:"7896005806203", nome:"Cápsula de Café com Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:3, ean:"7896005806142", nome:"Cápsula de Café Espresso Vibrante 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:4, ean:"7896005806227", nome:"Cápsula de Cappuccino Doce De Leite 3 Corações 10 unid", comum:23.99, cartao:15.99, regra:"Promoção: Pague 2 Leve 3"},
-    {id:5, ean:"7891962058139", nome:"Biscoito Wafer Recheio Chocolate Maxi Bauducco 104g", comum:5.15, cartao:4.65, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:6, ean:"7896005801727", nome:"Cappuccino Solúvel Classic 3 Corações 20g", comum:2.19, cartao:1.65, regra:"Promoção: Pague 3 Leve 4"},
-    {id:7, ean:"7891098042156", nome:"Chá Xô TPM Leão 20g 10 Unidades", comum:12.49, cartao:11.49, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:8, ean:"7622210617194", nome:"Chocolate Lacta ao Leite com Recheio de Oreo 90g", comum:6.79, cartao:6.79, regra:""},
-    {id:9, ean:"7891150036840", nome:"Caldo de Galinha em Pó Knorr Professional 1,01kg", comum:21.90, cartao:21.90, regra:""},
-    {id:10, ean:"7891000053508", nome:"Café Solúvel Nescafé Extra Forte Sachet 40g", comum:7.49, cartao:7.49, regra:""},
-    {id:11, ean:"7891000248768", nome:"Achocolatado NESCAU Cilindro 200g", comum:6.89, cartao:6.39, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:12, ean:"7896006744115", nome:"Farinha de Arroz Urbano 1kg", comum:7.89, cartao:7.19, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:13, ean:"7896079471116", nome:"Farinha de Mandioca Fina Kicaldo 1kg", comum:6.99, cartao:6.89, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:14, ean:"7622300861964", nome:"Biscoito Recheado Trakinas Chocolate 126g", comum:3.19, cartao:2.89, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:15, ean:"7891000315507", nome:"Achocolatado em Pó NESCAU 730g", comum:16.89, cartao:16.89, regra:""},
-    {id:16, ean:"7892840812836", nome:"Amendoim Japonês Elma Chips 400g", comum:20.50, cartao:18.50, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:17, ean:"7896052606542", nome:"Bebida Láctea Pirakids Chocolate 200ml", comum:1.35, cartao:1.25, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:18, ean:"7898948854120", nome:"Castanhas de Caju Amigos do Bem 50g", comum:6.99, cartao:6.99, regra:""},
-    {id:19, ean:"7896324100129", nome:"Doce de Mocotó Biro Biro 140g", comum:6.49, cartao:5.99, regra:"Cartão Tenda: a partir de 3 unidades"},
-    {id:20, ean:"7898113810128", nome:"Feijão Carioca Empório São João 1kg", comum:8.89, cartao:8.59, regra:"Cartão Tenda: a partir de 4 unidades"},
-    {id:21, ean:"7898215152019", nome:"Bananinha Zero Açúcar Oliveira 22g 24 Unid", comum:52.56, cartao:52.56, regra:""},
-    {id:22, ean:"7898952411029", nome:"Batata Palha Uau Chips 800g", comum:22.90, cartao:20.90, regra:"Cartão Tenda: a partir de 2 unidades"}
-  ];
-
-  var produtos = produtosFallback.slice();
-  var carrinho = [];
-  var streamCam = null;
-  var intervaloScan = null;
-  var zxingReader = null;
-  var canvasScan = document.createElement("canvas");
-  var statusBasePadrao = "● Online (Base Local)";
-
-  function fmt(v) {
-    return "R$ " + Number(v || 0).toFixed(2).replace(".", ",");
-  }
-
-  function setStatus(texto, isErro) {
-    var el = document.getElementById("statusBase");
-    el.textContent = texto;
-    el.className = isErro ? "status erro" : "status";
-  }
-
-  async function carregarBaseExterna() {
-    try {
-      var resp = await fetch("./data/produtos.json?t=" + Date.now(), { cache: "no-store" });
-      if (!resp.ok) throw new Error("HTTP " + resp.status);
-      var dados = await resp.json();
-
-      if (dados && Array.isArray(dados.produtos) && dados.produtos.length > 0) {
-        produtos = dados.produtos;
-        var dataTxt = "";
-        if (dados.atualizadoEm) {
-          var dt = new Date(dados.atualizadoEm);
-          if (!isNaN(dt.getTime())) {
-            dataTxt = " • Atualizado " + dt.toLocaleDateString("pt-BR") + " " + dt.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-          }
-        }
-        statusBasePadrao = "● Base Sincronizada (" + produtos.length + " itens)" + dataTxt;
-        setStatus(statusBasePadrao, false);
-        if (dados.cep) {
-          document.getElementById("infoLoja").textContent = "Loja Itatiba • CEP " + dados.cep;
-        }
-        filtrar();
-        return;
-      }
-      throw new Error("Base vazia");
-    } catch (e) {
-      produtos = produtosFallback.slice();
-      statusBasePadrao = "● Base Local (" + produtos.length + " itens)";
-      setStatus(statusBasePadrao, false);
-      filtrar();
-    }
-  }
-
-  function desenhar(lista) {
-    var box = document.getElementById("lista");
-    box.innerHTML = "";
-
-    if (!lista || lista.length === 0) {
-      var termoAtual = document.getElementById("searchInput").value.trim();
-      box.innerHTML =
-        '<div class="empty">' +
-          '<strong>Produto não localizado</strong>' +
-          (termoAtual ? '<br>Código/termo buscado: <code>' + termoAtual + '</code>' : '') +
-          '<br><small>Verifique se o item está no catálogo do CEP ' + CEP_PADRAO + ' ou busque pelo nome.</small>' +
-          '<br><button class="btn-reset-filter" onclick="limparBusca()">Mostrar todos os produtos</button>' +
-        '</div>';
-      return;
-    }
-
-    for (var i = 0; i < lista.length; i++) {
-      var p = lista[i];
-      var econ = p.comum - p.cartao;
-      var card = document.createElement("div");
-      card.className = "card";
-
-      var hRegra = "";
-      if (p.regra) {
-        hRegra = '<div class="regra"><span>⚡ ' + p.regra + '</span>' + (econ > 0 ? '<span class="econ-tag">-' + fmt(econ) + '</span>' : '') + '</div>';
-      }
-
-      card.innerHTML =
-        '<span class="ean-tag">EAN: ' + (p.ean || "N/D") + '</span>' +
-        '<div class="prod-title">' + p.nome + '</div>' +
-        hRegra +
-        '<div class="prices">' +
-          '<div class="p-box">' +
-            '<span class="p-label">Preço Comum</span>' +
-            '<span class="p-val">' + fmt(p.comum) + '</span>' +
-          '</div>' +
-          '<div class="p-box cartao">' +
-            '<span class="p-label">Cartão Tenda</span>' +
-            '<span class="p-val">' + fmt(p.cartao) + '</span>' +
-          '</div>' +
-        '</div>' +
-        '<button class="btn-add" onclick="adicionarCarrinho(' + p.id + ')">+ Adicionar ao Carrinho</button>';
-
-      box.appendChild(card);
-    }
-  }
-
-  function filtrar() {
-    var termo = document.getElementById("searchInput").value.toLowerCase().trim();
-    if (!termo) {
-      desenhar(produtos);
-      return;
-    }
-    var filtrados = produtos.filter(function(p) {
-      var nomeOk = p.nome && p.nome.toLowerCase().indexOf(termo) !== -1;
-      var eanOk = p.ean && String(p.ean).indexOf(termo) !== -1;
-      return nomeOk || eanOk;
-    });
-    desenhar(filtrados);
-  }
-
-  function limparBusca() {
-    document.getElementById("searchInput").value = "";
-    setStatus(statusBasePadrao, false);
-    filtrar();
-  }
-
-  function adicionarCarrinho(id) {
-    var item = produtos.find(function(p) { return p.id === id; });
-    if (item) {
-      carrinho.push(item);
-      atualizarPlacar();
-    }
-  }
-
-  function atualizarPlacar() {
-    var somaComum = 0;
-    var somaCartao = 0;
-    for (var i = 0; i < carrinho.length; i++) {
-      somaComum += carrinho[i].comum;
-      somaCartao += carrinho[i].cartao;
-    }
-    var economia = Math.max(0, somaComum - somaCartao);
-
-    document.getElementById("qtdItens").textContent = carrinho.length;
-    document.getElementById("totalComum").textContent = fmt(somaComum);
-    document.getElementById("totalCartao").textContent = fmt(somaCartao);
-    document.getElementById("totalEconomia").textContent = fmt(economia);
-  }
-
-  function limpar() {
-    carrinho = [];
-    document.getElementById("searchInput").value = "";
-    atualizarPlacar();
-    filtrar();
-    setStatus(statusBasePadrao, false);
-  }
-
-  function processarCodigoLido(codigo) {
-    if (!codigo) return;
-    var limpo = String(codigo).trim();
-    document.getElementById("searchInput").value = limpo;
-    filtrar();
-    fecharCamera();
-    setStatus("● Código lido: " + limpo, false);
-  }
-
-  function iniciarLeituraContinua(video) {
-    if (intervaloScan) {
-      clearInterval(intervaloScan);
-      intervaloScan = null;
-    }
-
-    var nativo = null;
-    if ("BarcodeDetector" in window) {
-      try {
-        nativo = new window.BarcodeDetector({
-          formats: ["ean_13", "ean_8", "upc_a", "upc_e", "code_128"]
-        });
-      } catch (e) {
-        nativo = null;
-      }
-    }
-
-    if (!zxingReader && window.ZXing && window.ZXing.BrowserMultiFormatReader) {
-      try {
-        zxingReader = new window.ZXing.BrowserMultiFormatReader();
-      } catch (e) {
-        zxingReader = null;
-      }
-    }
-
-    intervaloScan = setInterval(async function() {
-      if (!video || video.readyState < 2 || video.videoWidth === 0) return;
-
-      if (nativo) {
-        try {
-          var codigos = await nativo.detect(video);
-          if (codigos && codigos.length > 0 && codigos[0].rawValue) {
-            processarCodigoLido(codigos[0].rawValue);
-            return;
-          }
-        } catch (e) {}
-      }
-
-      if (zxingReader && zxingReader.decodeFromCanvas) {
-        try {
-          canvasScan.width = video.videoWidth;
-          canvasScan.height = video.videoHeight;
-          var ctx = canvasScan.getContext("2d");
-          ctx.drawImage(video, 0, 0, canvasScan.width, canvasScan.height);
-          var res = zxingReader.decodeFromCanvas(canvasScan);
-          if (res && res.getText()) {
-            processarCodigoLido(res.getText());
-          }
-        } catch (e) {}
-      }
-    }, 350);
-  }
-
-  async function abrirCamera() {
-    fecharCamera();
-
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setStatus("● Câmera não suportada neste navegador", true);
-      return;
-    }
-
-    var camBox = document.getElementById("camBox");
-    var video = document.getElementById("videoCam");
-
-    try {
-      setStatus("● Solicitando câmera...", false);
-      try {
-        streamCam = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" },
-          audio: false
-        });
-      } catch (errRear) {
-        streamCam = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: false
-        });
-      }
-
-      video.srcObject = streamCam;
-      camBox.style.display = "block";
-      await video.play();
-      setStatus("● Câmera ativa — aponte para o código EAN", false);
-      iniciarLeituraContinua(video);
-    } catch (err) {
-      setStatus("● Não foi possível abrir a câmera (verifique a permissão)", true);
-    }
-  }
-
-  function fecharCamera() {
-    if (intervaloScan) {
-      clearInterval(intervaloScan);
-      intervaloScan = null;
-    }
-    if (streamCam) {
-      var tracks = streamCam.getTracks();
-      for (var i = 0; i < tracks.length; i++) {
-        tracks[i].stop();
-      }
-      streamCam = null;
-    }
-    var video = document.getElementById("videoCam");
-    if (video) {
-      video.srcObject = null;
-    }
-    document.getElementById("camBox").style.display = "none";
-  }
-
-  atualizarPlacar();
-  carregarBaseExterna();
-<!-- MÓDULO DE CARTEIRA E CAPTAÇÃO (ARMAZENAMENTO LOCAL NO APARELHO) -->
-<div id="tenda-crm-root" style="font-family: system-ui, -apple-system, sans-serif;">
-  <button id="crm-fab-btn" type="button" onclick="window.TendaCRM.abrirModal()"
-    style="position: fixed; bottom: 20px; right: 20px; z-index: 9998; background: #ea580c; color: #fff; border: none; border-radius: 999px; padding: 12px 18px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.25); cursor: pointer; display: flex; align-items: center; gap: 8px;">
-    <span>Carteira</span>
-    <span id="crm-badge-30d" style="background: #16a34a; color: #fff; border-radius: 999px; padding: 2px 8px; font-size: 12px;">0 prontos</span>
-  </button>
-
-  <div id="crm-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(15,23,42,0.7); padding: 14px; overflow-y: auto;">
-    <div style="max-width: 720px; margin: 16px auto; background: #ffffff; color: #0f172a; border-radius: 14px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.35);">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 14px;">
-        <div>
-          <h2 style="margin: 0; font-size: 18px; font-weight: 800;">Carteira de Captação & Repescagem (30d)</h2>
-          <p style="margin: 3px 0 0; font-size: 12px; color: #64748b;">Salvo apenas neste aparelho (localStorage). Faça backup JSON periodicamente.</p>
-        </div>
-        <button type="button" onclick="window.TendaCRM.fecharModal()" style="background: #f1f5f9; color: #334155; border: none; border-radius: 8px; padding: 8px 12px; font-weight: 700; cursor: pointer;">Fechar</button>
-      </div>
-
-      <!-- Formulário de cadastro -->
-      <form id="crm-form" onsubmit="window.TendaCRM.salvarLead(event)" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 14px;">
-        <div style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #ea580c;">+ Novo contato / tentativa de cartão</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px;">
-          <input id="crm-nome" type="text" required placeholder="Nome do cliente" style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
-          <input id="crm-cpf" type="text" placeholder="CPF (opcional)" style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
-          <input id="crm-fone" type="tel" required placeholder="WhatsApp (ex: 11999999999)" style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
-          <input id="crm-data" type="date" required style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
-          <select id="crm-tag" style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; background: #fff;">
-            <option value="Reprovado (30d)">Reprovado (ciclo 30d)</option>
-            <option value="Quase-conversao">Quase-conversão / Pressa</option>
-            <option value="Comerciante">Comerciante / PJ</option>
-            <option value="Indicacao">Indicação</option>
-          </select>
-          <input id="crm-obs" type="text" placeholder="Obs (ex: mercado bairro, compra mês)" style="padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
-        </div>
-        <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
-          <button type="submit" style="background: #ea580c; color: #fff; border: none; border-radius: 8px; padding: 9px 16px; font-weight: 700; font-size: 13px; cursor: pointer;">Salvar na Carteira</button>
-        </div>
-      </form>
-
-      <!-- Filtros e backup -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-          <button type="button" data-filtro="prontos30" onclick="window.TendaCRM.setFiltro('prontos30')" class="crm-tab-btn" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #16a34a; background: #16a34a; color: #fff; font-weight: 700; font-size: 12px; cursor: pointer;">Prontos 30d+</button>
-          <button type="button" data-filtro="aguardando" onclick="window.TendaCRM.setFiltro('aguardando')" class="crm-tab-btn" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; font-weight: 700; font-size: 12px; cursor: pointer;">Aguardando 30d</button>
-          <button type="button" data-filtro="todos" onclick="window.TendaCRM.setFiltro('todos')" class="crm-tab-btn" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #fff; color: #334155; font-weight: 700; font-size: 12px; cursor: pointer;">Todos</button>
-        </div>
-        <div style="display: flex; gap: 6px;">
-          <button type="button" onclick="window.TendaCRM.exportarJSON()" style="padding: 6px 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; font-size: 12px; cursor: pointer;">Exportar Backup</button>
-          <label style="padding: 6px 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; font-size: 12px; cursor: pointer;">
-            Importar
-            <input type="file" accept=".json" onchange="window.TendaCRM.importarJSON(event)" style="display: none;">
-          </label>
-        </div>
-      </div>
-
-      <!-- Lista de contatos -->
-      <div id="crm-lista" style="display: flex; flex-direction: column; gap: 8px; max-height: 52vh; overflow-y: auto;"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-(function () {
-  const STORAGE_KEY = "tenda_promotor_carteira_v1";
-  let filtroAtual = "prontos30";
+  var CHAVE_STORAGE = "tenda_promotor_carteira_v1";
+  var filtroAtivo = "prontos30";
 
   function hojeISO() {
-    const d = new Date();
-    const offset = d.getTimezoneOffset() * 60000;
-    return new Date(d.getTime() - offset).toISOString().slice(0, 10);
+    var d = new Date();
+    var off = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - off).toISOString().slice(0, 10);
   }
 
   function diasDesde(dataStr) {
     if (!dataStr) return 0;
-    const partes = dataStr.split("-");
-    if (partes.length !== 3) return 0;
-    const inicio = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
-    const agora = new Date();
-    const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
-    return Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
+    var p = dataStr.split("-");
+    if (p.length !== 3) return 0;
+    var ini = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    var now = new Date();
+    var hoje = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((hoje - ini) / 86400000);
   }
 
-  function carregarLeads() {
+  function lerLeads() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const arr = raw ? JSON.parse(raw) : [];
+      var raw = localStorage.getItem(CHAVE_STORAGE);
+      var arr = raw ? JSON.parse(raw) : [];
       return Array.isArray(arr) ? arr : [];
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }
 
-  function salvarLeads(lista) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
-    atualizarBadge();
-    renderizarLista();
+  function gravarLeads(lista) {
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(lista));
+    renderizar();
   }
 
-  function atualizarBadge() {
-    const lista = carregarLeads();
-    const prontos = lista.filter(item => !item.contatado && item.tag === "Reprovado (30d)" && diasDesde(item.data) >= 30).length;
-    const badge = document.getElementById("crm-badge-30d");
-    if (badge) {
-      badge.textContent = prontos + (prontos === 1 ? " pronto" : " prontos");
-      badge.style.background = prontos > 0 ? "#16a34a" : "#475569";
-    }
-  }
-
-  function abrirModal() {
-    const dataInput = document.getElementById("crm-data");
-    if (dataInput && !dataInput.value) dataInput.value = hojeISO();
-    const modal = document.getElementById("crm-modal");
-    if (modal) modal.style.display = "block";
-    renderizarLista();
-  }
-
-  function fecharModal() {
-    const modal = document.getElementById("crm-modal");
-    if (modal) modal.style.display = "none";
-  }
-
-  function salvarLead(event) {
-    event.preventDefault();
-    const nome = document.getElementById("crm-nome").value.trim();
-    const cpf = document.getElementById("crm-cpf").value.replace(/\D/g, "");
-    const fone = document.getElementById("crm-fone").value.replace(/\D/g, "");
-    const data = document.getElementById("crm-data").value || hojeISO();
-    const tag = document.getElementById("crm-tag").value;
-    const obs = document.getElementById("crm-obs").value.trim();
-
+  function salvarLead(e) {
+    e.preventDefault();
+    var nome = document.getElementById("nome").value.trim();
+    var cpf = document.getElementById("cpf").value.replace(/\D/g, "");
+    var fone = document.getElementById("fone").value.replace(/\D/g, "");
+    var data = document.getElementById("data").value || hojeISO();
+    var tag = document.getElementById("tag").value;
+    var obs = document.getElementById("obs").value.trim();
     if (!nome || !fone) return;
 
-    const lista = carregarLeads();
+    var lista = lerLeads();
     lista.unshift({
       id: Date.now().toString(36),
-      nome,
-      cpf,
-      fone,
-      data,
-      tag,
-      obs,
+      nome: nome,
+      cpf: cpf,
+      fone: fone,
+      data: data,
+      tag: tag,
+      obs: obs,
       contatado: false
     });
-
-    salvarLeads(lista);
-    document.getElementById("crm-form").reset();
-    document.getElementById("crm-data").value = hojeISO();
+    gravarLeads(lista);
+    e.target.reset();
+    document.getElementById("data").value = hojeISO();
   }
 
-  function setFiltro(novoFiltro) {
-    filtroAtual = novoFiltro;
-    document.querySelectorAll(".crm-tab-btn").forEach(btn => {
-      const ativo = btn.getAttribute("data-filtro") === novoFiltro;
-      btn.style.background = ativo ? "#0f172a" : "#fff";
-      btn.style.color = ativo ? "#fff" : "#334155";
-      btn.style.borderColor = ativo ? "#0f172a" : "#cbd5e1";
+  function setFiltro(f) {
+    filtroAtivo = f;
+    ["prontos30", "aguardando", "todos"].forEach(function(id) {
+      var el = document.getElementById("tab-" + id);
+      if (el) el.className = id === f ? "tab ativa" : "tab";
     });
-    renderizarLista();
+    renderizar();
   }
 
   function copiarCPF(cpf) {
-    if (!cpf) return alert("CPF não informado para este contato.");
-    navigator.clipboard?.writeText(cpf);
-    alert("CPF copiado: " + cpf);
+    if (!cpf) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(cpf).catch(function(){});
+    }
+    alert("CPF: " + cpf);
   }
 
   function chamarWhatsApp(id) {
-    const lista = carregarLeads();
-    const lead = lista.find(x => x.id === id);
+    var lead = lerLeads().find(function(x) { return x.id === id; });
     if (!lead) return;
-
-    let numero = lead.fone;
-    if (numero.length === 10 || numero.length === 11) numero = "55" + numero;
-
-    const dias = diasDesde(lead.data);
-    const msg = lead.tag === "Reprovado (30d)" && dias >= 30
-      ? `Olá ${lead.nome}, tudo bem? Aqui é do Tenda Atacado Itatiba. Já completaram os 30 dias da sua última análise do cartão e podemos verificar uma nova pré-aprovação para você aproveitar os descontos exclusivos na loja. Posso te ajudar?`
-      : `Olá ${lead.nome}, tudo bem? Aqui é do Tenda Atacado Itatiba. Passando para te avisar sobre as ofertas e condições do cartão para suas compras na loja!`;
-
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, "_blank");
+    var num = lead.fone;
+    if (num.length === 10 || num.length === 11) num = "55" + num;
+    var dias = diasDesde(lead.data);
+    var txt = (lead.tag === "Reprovado (30d)" && dias >= 30)
+      ? "Olá " + lead.nome + ", aqui é do Tenda Atacado Itatiba. Já completaram 30 dias da sua última análise do cartão e podemos verificar uma nova pré-aprovação para você aproveitar os descontos na loja. Posso te ajudar?"
+      : "Olá " + lead.nome + ", aqui é do Tenda Atacado Itatiba. Passando para compartilhar as ofertas e condições do cartão para suas compras na loja!";
+    window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(txt), "_blank");
   }
 
   function alternarContatado(id) {
-    const lista = carregarLeads().map(item =>
-      item.id === id ? { ...item, contatado: !item.contatado } : item
-    );
-    salvarLeads(lista);
+    var lista = lerLeads().map(function(x) {
+      return x.id === id ? Object.assign({}, x, { contatado: !x.contatado }) : x;
+    });
+    gravarLeads(lista);
   }
 
   function excluirLead(id) {
-    if (!confirm("Remover este contato da carteira?")) return;
-    const lista = carregarLeads().filter(item => item.id !== id);
-    salvarLeads(lista);
+    if (!confirm("Excluir este contato?")) return;
+    gravarLeads(lerLeads().filter(function(x) { return x.id !== id; }));
   }
 
   function exportarJSON() {
-    const dados = JSON.stringify(carregarLeads(), null, 2);
-    const blob = new Blob([dados], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    var blob = new Blob([JSON.stringify(lerLeads(), null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
     a.href = url;
-    a.download = `carteira-tenda-${hojeISO()}.json`;
+    a.download = "carteira-tenda-" + hojeISO() + ".json";
     a.click();
     URL.revokeObjectURL(url);
   }
 
-  function importarJSON(event) {
-    const file = event.target.files?.[0];
+  function importarJSON(e) {
+    var file = e.target.files && e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function (e) {
+    var r = new FileReader();
+    r.onload = function(ev) {
       try {
-        const importados = JSON.parse(String(e.target.result || "[]"));
-        if (!Array.isArray(importados)) return alert("Arquivo inválido.");
-        const atual = carregarLeads();
-        const idsExistentes = new Set(atual.map(x => x.id));
-        const mesclados = [...atual];
-        for (const item of importados) {
-          if (item && item.nome && item.fone && !idsExistentes.has(item.id)) {
-            mesclados.push(item);
+        var imp = JSON.parse(String(ev.target.result || "[]"));
+        if (!Array.isArray(imp)) return alert("Arquivo JSON inválido.");
+        var atual = lerLeads();
+        var ids = {};
+        atual.forEach(function(x) { ids[x.id] = true; });
+        imp.forEach(function(item) {
+          if (item && item.nome && item.fone && !ids[item.id]) {
+            atual.push(item);
+            ids[item.id] = true;
           }
-        }
-        salvarLeads(mesclados);
-        alert("Backup importado com sucesso!");
-      } catch (_) {
-        alert("Não foi possível ler o arquivo JSON.");
+        });
+        gravarLeads(atual);
+        alert("Backup importado!");
+      } catch (err) {
+        alert("Erro ao ler o arquivo.");
       }
     };
-    reader.readAsText(file);
-    event.target.value = "";
+    r.readAsText(file);
+    e.target.value = "";
   }
 
-  function renderizarLista() {
-    const container = document.getElementById("crm-lista");
-    if (!container) return;
+  function renderizar() {
+    var box = document.getElementById("listaLeads");
+    var lista = lerLeads().map(function(x) {
+      return Object.assign({}, x, { dias: diasDesde(x.data) });
+    });
 
-    const lista = carregarLeads().map(item => ({
-      ...item,
-      dias: diasDesde(item.data)
-    }));
-
-    const filtrada = lista.filter(item => {
-      const elegivel30 = item.tag === "Reprovado (30d)" && item.dias >= 30;
-      if (filtroAtual === "prontos30") return !item.contatado && (elegivel30 || item.tag !== "Reprovado (30d)");
-      if (filtroAtual === "aguardando") return !item.contatado && item.tag === "Reprovado (30d)" && item.dias < 30;
+    var filtrada = lista.filter(function(x) {
+      var elegivel30 = x.tag === "Reprovado (30d)" && x.dias >= 30;
+      if (filtroAtivo === "prontos30") return !x.contatado && (elegivel30 || x.tag !== "Reprovado (30d)");
+      if (filtroAtivo === "aguardando") return !x.contatado && x.tag === "Reprovado (30d)" && x.dias < 30;
       return true;
     });
 
-    filtrada.sort((a, b) => b.dias - a.dias);
+    filtrada.sort(function(a, b) { return b.dias - a.dias; });
 
     if (!filtrada.length) {
-      container.innerHTML = `<div style="text-align:center; padding:20px; color:#64748b; font-size:13px;">Nenhum contato neste filtro ainda.</div>`;
+      box.innerHTML = '<div class="vazio">Nenhum contato neste filtro.</div>';
       return;
     }
 
-    container.innerHTML = filtrada.map(item => {
-      const pronto30 = item.tag === "Reprovado (30d)" && item.dias >= 30;
-      const faltam = Math.max(0, 30 - item.dias);
-      const statusTexto = item.tag === "Reprovado (30d)"
-        ? (pronto30 ? `PRONTO (${item.dias}d — reanalisar)` : `Aguardando (${item.dias}d / faltam ${faltam}d)`)
-        : `${item.tag} (${item.dias}d atrás)`;
+    box.innerHTML = filtrada.map(function(item) {
+      var pronto30 = item.tag === "Reprovado (30d)" && item.dias >= 30;
+      var faltam = Math.max(0, 30 - item.dias);
+      var status = item.tag === "Reprovado (30d)"
+        ? (pronto30 ? "PRONTO (" + item.dias + "d — reanalisar)" : "Aguardando (" + item.dias + "d / faltam " + faltam + "d)")
+        : (item.tag + " (" + item.dias + "d)");
 
-      return `
-        <div style="border: 1px solid ${pronto30 ? '#86efac' : '#e2e8f0'}; background: ${pronto30 ? '#f0fdf4' : '#ffffff'}; border-radius: 10px; padding: 10px 12px;">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap;">
+      return (
+        '<div class="lead ' + (pronto30 ? "pronto" : "") + '">' +
+          '<div class="lead-top">' +
+            '<div>' +
+              '<strong>' + item.nome + '</strong>' +
+              '<span class="badge ' + (pronto30 ? "ok" : "") + '">' + status + '</span>' +
+              '<div class="meta">Tel: ' + item.fone + (item.cpf ? " • CPF: " + item.cpf : "") + " • Data: " + item.data + '</div>' +
+              (item.obs ? '<div class="obs">Obs: ' + item.obs + '</div>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="btns">' +
+            (item.cpf ? '<button type="button" class="b-cpf" onclick="copiarCPF(\'' + item.cpf + '\')">Copiar CPF</button>' : '') +
+            '<button type="button" class="b-wpp" onclick="chamarWhatsApp(\'' + item.id + '\')">WhatsApp</button>' +
+            '<button type="button" class="b-ok" onclick="alternarContatado(\'' + item.id + '\')">' + (item.contatado ? "Reabrir" : "Contatado") + '</button>' +
+            '<button type="button" class="b-del" onclick="excluirLead(\'' + item.id + '\')">Excluir</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
 
+  document.getElementById("data").value = hojeISO();
+  renderizar();
 </script>
 </body>
 </html>
